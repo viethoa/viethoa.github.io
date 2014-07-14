@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8" />
+	<title>Home</title>
+
+	<!-- bootstrap css -->
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+
+	<!-- my css -->
+	<link rel="stylesheet" href="css/mystyle.css">
+</head>
+<body>
+	<div class="row">
+		<div class="col-md-2 logo-company">
+			<a href="/"><img src="images/logo.jpg"></a>
+		</div>
+		<div class="col-md-8 header-content">
+			<h1>TIÊN PHONG - INVEW - ONL</h1>
+			<h1>VER - BETA - 101</h1>
+		</div>
+		<div class="col-md-2 user-logged">
+			<img src="images/user.png" alt="Khuất Việt Hòa - 01286.84.83.84">
+			<span class="user-name">Khuất Việt Hòa</span>
+			<span class="user-name">01286.84.83.84</span>
+		</div>
+	</div>
+
+	<div class="row">
+		<h1>Nghiệp vụ nhập kho</h1>
+		<hr>
+		<div class="col-md-4 form-group">
+	    <label>Số chứng từ</label>
+	    <input type="text" class="form-control" id="sochungtu" placeholder="Số chứng từ">
+	    <label class="label label-danger error">điền thông tin cho mục này</label>
+	  </div>
+	  <div class="col-md-4 form-group">
+	    <label>Ngày chứng từ</label>
+	    <input type="text" class="form-control" id="ngaychungtu" placeholder="Ngày chứng từ">
+	    <label class="label label-danger error">điền thông tin cho mục này</label>	    
+	  </div>
+	  <div class="col-md-4 form-group">
+	    <label>Mã thiết kế</label>
+	    <input type="text" class="form-control" id="mathietke" placeholder="Mã thiết kế">
+	    <label class="label label-danger error">điền thông tin cho mục này</label>
+	  </div>
+	</div>
+
+	<div class="row">
+		<hr>
+		<table class="table table-striped" id="table-striped">
+			<thead>
+				<tr>
+					<th>STT</th>
+					<th>MSC</th>
+					<th>Chiều dài</th>
+					<th>Ngày sản xuất</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>1</td>
+					<td><input type="text" value=""></td>
+					<td><input type="text" value=""></td>
+					<td><input type="text" class="enterfill" value=""></td>
+					<!-- <td><span class="label label-danger delete">xóa</span></td> -->
+				</tr>
+			</tbody>
+		</table>
+
+		<h3><span class="label label-primary sum">Tổng: 1 cọc</span></h3>
+		<div class="right">
+			<a href="/" class="btn btn-default">Go back...</a>
+			<button class="btn btn-primary btn-nk-insert" id="InsertData">Xác nhận</button>
+		</div>
+	</div>
+
+	<div class="loading" style="display:none">
+		<img class="loadingImage" src="images/loading.gif"></div>
+
+	<footer></footer>
+
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+	<script src="js/handlebars-v1.3.0.js"></script>
+
+	<script id="row-template" type="text/x-handlebars-template">
+  	<tr>
+			<td>{{STT}}</td>
+			<td><input type="text" value=""></td>
+			<td><input type="text" value=""></td>
+			<td><input type="text" class="enterfill" value=""></td>
+		</tr>
+	</script>
+	<script id="tbody-template" type="text/x-handlebars-template">
+  	<tr>
+			<td>1</td>
+			<td><input type="text" value=""></td>
+			<td><input type="text" value=""></td>
+			<td><input type="text" class="enterfill" value=""></td>
+		</tr>
+	</script>
+	
+	<script src="js/nhapkho.js"></script>
+	<!-- Call google api client onload = initialize -->
+	<script src="https://apis.google.com/js/client.js?onload=initialize"></script>	
+</body>
+</html>

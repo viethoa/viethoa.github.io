@@ -1,0 +1,114 @@
+body { margin: auto; width: 1000px;}
+
+/* ------------------------------------------------------
+|	Header
+/*-------------------------------------------------------*/
+.logo-company img{
+	max-width: 160px;
+	cursor: pointer;
+}
+.header-content {
+	text-align: center;
+}
+.user-logged {
+	text-align: center;
+}
+	.user-logged img{
+		max-width: 115px;
+	}
+
+/* ------------------------------------------------------
+|	Content
+/*-------------------------------------------------------*/
+.content-above {
+	margin-top: 50px;
+	border-bottom: 1px solid #ccc;
+	padding-bottom: 15px;
+}
+.my-date {
+	font-size: 2.3rem;
+}
+.sidebar {
+	list-style: none;
+	padding: 0px;
+	margin-top: 20px;
+}
+	.sidebar li {
+		padding: 10px 0px;
+	}
+	.sidebar li button{
+		width: 90%;
+	}
+
+.left { 
+	border-right: 1px solid #ccc;
+}
+.btn-add-new {
+	float: right;
+	margin-top: -50px;
+}
+.table-striped tbody tr {
+	cursor: pointer;
+}
+.table-striped input {
+	width: 90%;
+}
+.error {display: none}
+.loading {
+	display: none;
+	float: right;
+	margin-top: -30px;
+	margin-right: 110px;
+	font-size: 13pt;
+	color: blue;
+}
+.right {
+	margin-top: -42px;
+}
+.right, .right button, .right a {
+	float: right;
+}
+	.right button, .right a {
+		margin-left: 10px;
+	}
+
+/* ------------------------------------------------------
+|	Content
+/*-------------------------------------------------------*/
+.popup-show-data, .loading {
+	position: absolute;
+	width: 100%;
+	top: 0px;
+	left: 0px;
+	min-height: 100%;
+	text-align: center;
+	display: block;
+}
+.popup-show-data {
+	background-color: rgba(165, 165, 165, 0.92);
+}
+.popup-container{
+	margin: auto;
+	width: 1000px;
+	margin-top: 20px;
+}
+#popup-table {
+	margin-left: 15px;
+	width: 97%;
+}
+.popup-container .sum{ margin-left: 15px; }
+
+.loading {
+	background-color: rgba(230, 230, 230, 0.6);
+}
+.loadingImage {
+	position: fixed;
+	margin-left: -40px;
+	top: 35%;
+	width: 100px;
+}
+
+
+footer {
+	min-height: 50px;
+}
