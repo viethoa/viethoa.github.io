@@ -20,8 +20,10 @@ Handlebars.registerHelper("math", function(lvalue, operator, rvalue, options) {
 /* ------------------------------------------------------------*/
 var ChungTu_tableId = '1Ed8oQjlUZu3taYzbjEhUePlr6Y-7WJnLoazC8Th1';
 var Coc_tableId = '16S5xV2WhuOzYyr4oNtPuOcq1M2eOkE-JqkwRfXuc';
-var clientId = '620854073277-21qpvpu2sk8k0fb0llvvfcjm8c7o876d.apps.googleusercontent.com';
-var apiKey = 'AIzaSyD4REk101IKAOV0bCRU2ZqLttWDmCdgBmA';
+// var clientId = '620854073277-21qpvpu2sk8k0fb0llvvfcjm8c7o876d.apps.googleusercontent.com';
+// var apiKey = 'AIzaSyD4REk101IKAOV0bCRU2ZqLttWDmCdgBmA';
+var clientId = '620854073277-qhsnd3l79nkoh8emfkmhce81pp0f6eti.apps.googleusercontent.com';
+var apiKey = 'AIzaSyAoFEVwvxeLEZS2sOnckHU2zBPRYPgA-gA';
 var scopes = 'https://www.googleapis.com/auth/fusiontables';
 
 var FormChungTu  = $('.form-chung-tu'),
@@ -34,9 +36,6 @@ var FormChungTu  = $('.form-chung-tu'),
 		CountSend		 = 0,
 		CountRes 		 = 0,
 		flagFins		 = false;
-
-
-id = id.replace(/%20/g, ' ');
 
 
 // login to pass authorization
@@ -62,20 +61,10 @@ function CapNhapTrangThai() {
 	loading.fadeIn(300);
 
 	var sql = [];
-	sql.push('SELECT ROWID FROM ');
-	sql.push(ChungTu_tableId);
-	sql.push(' WHERE SoChungTu = ');
-	sql.push("'" + id + "'");
-
-	query(sql.join(''), 'update', ChungTu_tableId);
-}
-
-function Update(res, tableId) {
-	var sql = [];
 	sql.push('UPDATE ');
-	sql.push(tableId);
+	sql.push(ChungTu_tableId);
 	sql.push(' SET LoaiChungTu = 1 WHERE ROWID = ');
-	sql.push("'" + res.rows[0][0] + "'");
+	sql.push("'" + id + "'");
 	
 	query(sql.join(''), 'updateFins');
 }
@@ -97,15 +86,15 @@ function XoaPhieu() {
 
 	// delete row in ChungTu (this)
 	var sql = [];
-	sql.push('SELECT ROWID FROM ');
-	sql.push(ChungTu_tableId);
-	sql.push(' WHERE SoChungTu = ');
-	sql.push("'" + id + "'");
+			sql.push('DELETE FROM ');
+			sql.push(ChungTu_tableId);
+			sql.push(' WHERE ROWID = ');
+			sql.push("'" + id + "'");
 
-	// setTimeout(function(){
-		query(sql.join(''), 'select', ChungTu_tableId);
-	// }, 2500);
+	query(sql.join(''), 'delete');
 }
+
+
 
 function deletes(res, tableId, finish) {
 	second = 0;
@@ -127,7 +116,7 @@ function deletes(res, tableId, finish) {
 		second += 2000;
 	});
 
-	// if(finish === 'finish') flagFins = true;
+	flagFins = true;
 }
 
 
@@ -140,7 +129,7 @@ function GetChungTu() {
 	var sql = [];
 	sql.push('SELECT * FROM ');
 	sql.push(ChungTu_tableId);
-	sql.push(' WHERE SoChungTu = ');
+	sql.push(' WHERE rowId = ');
 	sql.push("'" + id + "'");
 	query(sql.join(''), 'ChungTu');
 
@@ -186,12 +175,6 @@ function query(query, flag, tableId ,finish) {
 
       if(resp.rows && flag === 'Coc') fillData_Coc(resp);
 
-      if(resp.rows && flag === 'select') { 
-
-      	if(finish === 'finish') deletes(resp, tableId, finish);
-      	else deletes(resp, tableId);
-      }
-
       if(flag === 'delete') {
       	window.location.href = "/";
 
@@ -201,8 +184,6 @@ function query(query, flag, tableId ,finish) {
 	      //	window.location.href = "/";
 	      //}
       }
-
-      if(resp.rows && flag === 'update') Update(resp, tableId);
 
       if(flag === 'updateFins') {
       	window.location.href = "/";

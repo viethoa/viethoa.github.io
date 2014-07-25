@@ -3,8 +3,10 @@
 /* ------------------------------------------------------------*/
 var ChungTu_tableId = '1Ed8oQjlUZu3taYzbjEhUePlr6Y-7WJnLoazC8Th1';
 var Coc_tableId = '16S5xV2WhuOzYyr4oNtPuOcq1M2eOkE-JqkwRfXuc';
-var clientId = '620854073277-21qpvpu2sk8k0fb0llvvfcjm8c7o876d.apps.googleusercontent.com';
-var apiKey = 'AIzaSyD4REk101IKAOV0bCRU2ZqLttWDmCdgBmA';
+// var clientId = '620854073277-21qpvpu2sk8k0fb0llvvfcjm8c7o876d.apps.googleusercontent.com';
+// var apiKey = 'AIzaSyD4REk101IKAOV0bCRU2ZqLttWDmCdgBmA';
+var clientId = '620854073277-qhsnd3l79nkoh8emfkmhce81pp0f6eti.apps.googleusercontent.com';
+var apiKey = 'AIzaSyAoFEVwvxeLEZS2sOnckHU2zBPRYPgA-gA';
 var scopes = 'https://www.googleapis.com/auth/fusiontables';
 
 // login to pass authorization
@@ -43,14 +45,28 @@ $('#table-striped').on('keypress', '.enterfill', function(e) {
 		// add pend row into table
 		table.append(template(content));
 
+		// activation datetime picker
+		table.find('.mydate:last').datetimepicker({
+      format: 'dd/MM/yyyy'
+    }).data('datetimepicker').setDate((new Date).getTime());
+
+		// change focus
+		table.find('.enterfill').focus().val();
+
 		// change sum row
 		sum.html('Tổng: ' + content.STT + ' cọc');
 	}
 });
 
+// Delete a row on Table Event Handle
 $('#table-striped').on('click', '.delete', function() {
 	$(this).parent().parent().remove();
 })
+
+
+// set current date for datetime picker
+$('.mydate').data('datetimepicker').setDate((new Date).getTime());
+$('td.mydate').data('datetimepicker').setDate((new Date).getTime());
 
 
 /* ------------------------------------------------------------*/
@@ -74,8 +90,7 @@ function initNhapKho() {
 	sum.html('Tổng: ' + content.STT + ' cọc');
 
 	sochungtu.val('');
-	ngaychungtu.val('');
-	mathietke.val('');
+	$('.mydate').data('datetimepicker').setDate((new Date).getTime());
 }
 
 InsertData.click( function() {
@@ -85,13 +100,13 @@ InsertData.click( function() {
 		$(this).attr("disabled", true);
 		loading.fadeIn(300);
 
-		// insert table: chứng từ
+		// insert table: Chứng Tù
 		InsertChungTung();
 
-		// insert table: cọc chứng từ
-		setTimeout(function(){
-			InsertCocChungTus();
-		}, 2500);
+		// insert table: Cọc được sau khi insert xong ChungTu
+		// setTimeout(function(){
+		// 	InsertCocChungTus();
+		// }, 2500);
 	}
 });
 
@@ -115,16 +130,16 @@ function InsertChungTung() {
 	insert.push("'"+mathietke.val()+"',");
 	insert.push("'"+content.STT+"', '0' )");
 	  
-	query(insert.join(''));
+	query(insert.join(''), 'ChungTu');
 }
 
-function InsertCocChungTus() {
+function InsertCocChungTus(rowId) {
 	var rows = table.find('tr'),
 			second = 0;
 
 	$.each(rows, function(key, row) {
 		setTimeout(function() {
-		   InsertCocChungTu(row);
+		   InsertCocChungTu(row, rowId);
 		}, second);
 
 		second += 2000; countSend++;
@@ -133,13 +148,13 @@ function InsertCocChungTus() {
 	flag = true;
 }
 
-function InsertCocChungTu(row) {
+function InsertCocChungTu(row, rowId) {
 	var cols = $(row).find('td');
 	var insert = [];
 
 	insert.push('INSERT INTO ');
 	insert.push(Coc_tableId);
-	insert.push(' (MSC, ChieuDai, NgaySanXuat, SoChungTu, TinhTrang) VALUES (');
+	insert.push(' (NgaySanXuat, ChieuDai, MSC, SoChungTu, TinhTrang) VALUES (');
 
 	$.each(cols, function(key, col) {
     if(key > 0) {
@@ -147,7 +162,7 @@ function InsertCocChungTu(row) {
     }
 	});
 
-	insert.push("'"+ sochungtu.val() +"',");
+	insert.push("'"+ rowId +"',");
 	insert.push("0 )");
 	query(insert.join(''));
 }
@@ -156,13 +171,19 @@ function InsertCocChungTu(row) {
 /* ------------------------------------------------------------*/
 //		Send an SQL query to Fusion Tables.
 /* ------------------------------------------------------------*/
-function query(query) {
+function query(query, call) {
   var lowerCaseQuery = query.toLowerCase();
   var path = '/fusiontables/v1/query';
 
   var callback = function() {
+
     return function(resp) {
-      var output = JSON.stringify(resp);
+
+    	if(call === "ChungTu") {
+    		var rowChungTuID = resp.rows[0][0];
+
+    		InsertCocChungTus(rowChungTuID);
+    	}      
 
       // resquet number received
       countRes++;
@@ -178,6 +199,11 @@ function query(query) {
 
 				// finish, set table is empty
 	      table.html(template());
+
+	      // activation datatime picker
+	      table.find('.mydate:last').datetimepicker({
+		      format: 'dd/MM/yyyy'
+		    }).data('datetimepicker').setDate((new Date).getTime());
 
 	      // setup attributs
 	      initNhapKho();
@@ -213,3 +239,5 @@ function runClientRequest(request, callback) {
   var restRequest = gapi.client.request(request);
   restRequest.execute(callback);
 }
+
+

@@ -17,7 +17,7 @@
 	<script src="js/handlebars-v1.3.0.js"></script>
 </head>
 <body>
-	<div class="row">
+	<div class="row row-header">
 		<div class="col-md-2 logo-company">
 			<a href="/"><img src="images/logo.jpg"></a>
 		</div>
@@ -25,10 +25,9 @@
 			<h1>TIÊN PHONG - INVEW - ONL</h1>
 			<h1>VER - BETA - 101</h1>
 		</div>
-		<div class="col-md-2 user-logged">
+		<div id="my-user" class="col-md-2 user-logged">
 			<img src="images/user.png" alt="Khuất Việt Hòa - 01286.84.83.84">
-			<span class="user-name">Khuất Việt Hòa</span>
-			<span class="user-name">01286.84.83.84</span>
+			<span class="user-name"></span>
 		</div>
 	</div>
 
@@ -76,7 +75,7 @@
 					<button class="btn btn-default" id="btn-xuatkho">Xuất Kho</button>
 				</li>
 				<li>
-					<button class="btn btn-default	">Kiểm Kho</button>
+					<button class="btn btn-default">Kiểm Kho</button>
 				</li>
 			</ul>
 		</div>
@@ -143,43 +142,41 @@
 		</div>
 	</div>
 
-	<!-- <input type="text" name="browser" list="browsers" /> 
-	<datalist id="browsers">
-	  <option value="Chrome" />
-	  <option value="Firefox" />
-	  <option value="IE">Internet Explorer</option>
-	  <option value="Safari" />
-	  <option value="Opera" />
-	</datalist> -->
+	<div class="loading" style="display:none">
+		<img class="loadingImage" src="images/loading.gif"></div>
 
 	<footer></footer>
 
-
+	<!-- Row Template for PhieuNhap -->
 	<script id="tbody-template" type="text/x-handlebars-template">
 		{{#each this}}
 	  	<tr>
 				<td>{{math @index "+" 1}}</td>
-				<td>{{this.[0]}}</td>
 				<td>{{this.[1]}}</td>
 				<td>{{this.[2]}}</td>
 				<td>{{this.[3]}}</td>
+				<td>{{this.[4]}}</td>
 				<td>
-					<button class="btn btn-success btn-xs view">View</button>
-					<button class="btn btn-info btn-xs update">update</button>
+					<button data-table="NhapKho" data-id="{{this.[0]}}" class="btn btn-success btn-xs view">
+						View</button>
+					<button data-table="NhapKho" data-id="{{this.[0]}}" class="btn btn-info btn-xs update">
+						update</button>
 				</td>
 			</tr>
 		{{/each}}
 	</script>
+
+	<!-- Row Template for PhieuXuat -->
 	<script id="tbody-template-2" type="text/x-handlebars-template">
 		{{#each this}}
 	  	<tr>
 				<td>{{math @index "+" 1}}</td>
-				<td>{{this.[0]}}</td>
 				<td>{{this.[1]}}</td>
 				<td>{{this.[2]}}</td>
 				<td>{{this.[3]}}</td>
+				<td>{{this.[4]}}</td>
 				<td>
-					<button class="btn btn-success btn-xs view">View</button>
+					<button data-table="XuatKho" data-id="{{this.[0]}}" class="btn btn-success btn-xs view">View</button>
 				</td>
 			</tr>
 		{{/each}}

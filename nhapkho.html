@@ -3,47 +3,55 @@
 <head>
 	<meta charset="UTF-8" />
 	<title>Home</title>
-
-	<!-- bootstrap css -->
-	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+	
+	<!-- bootstrap -->
+	<link href="css/bootstrap-combined.min.css" rel="stylesheet">
+  <link rel="stylesheet" media="screen" href="css/bootstrap-datetimepicker.min.css">
 
 	<!-- my css -->
 	<link rel="stylesheet" href="css/mystyle.css">
 </head>
 <body>
-	<div class="row">
-		<div class="col-md-2 logo-company">
+	<div class="my-row header">	
+		<div class="col-2 logo-company">
 			<a href="/"><img src="images/logo.jpg"></a>
 		</div>
-		<div class="col-md-8 header-content">
+		<div class="col-8 header-content">
 			<h1>TIÊN PHONG - INVEW - ONL</h1>
 			<h1>VER - BETA - 101</h1>
 		</div>
-		<div class="col-md-2 user-logged">
+		<div class="col-2 user-logged">
 			<img src="images/user.png" alt="Khuất Việt Hòa - 01286.84.83.84">
 			<span class="user-name">Khuất Việt Hòa</span>
-			<span class="user-name">01286.84.83.84</span>
 		</div>
 	</div>
 
 	<div class="row">
-		<h1>Nghiệp vụ nhập kho</h1>
+		<h3>Nghiệp vụ nhập kho</h3>
 		<hr>
-		<div class="col-md-4 form-group">
+		<div class="my-form">
 	    <label>Số chứng từ</label>
 	    <input type="text" class="form-control" id="sochungtu" placeholder="Số chứng từ">
-	    <label class="label label-danger error">điền thông tin cho mục này</label>
+	    <label class="label label-danger label-error">điền thông tin cho mục này</label>
 	  </div>
-	  <div class="col-md-4 form-group">
+	  <div class="my-form input-append mydate date">
 	    <label>Ngày chứng từ</label>
 	    <input type="text" class="form-control" id="ngaychungtu" placeholder="Ngày chứng từ">
-	    <label class="label label-danger error">điền thông tin cho mục này</label>	    
+	    <span class="add-on">
+        <i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
+      </span>
+	    <label class="label label-danger label-error">điền thông tin cho mục này</label>	    
 	  </div>
-	  <div class="col-md-4 form-group">
+	  <div class="my-form">
 	    <label>Mã thiết kế</label>
-	    <input type="text" class="form-control" id="mathietke" placeholder="Mã thiết kế">
-	    <label class="label label-danger error">điền thông tin cho mục này</label>
+	    <input type="text" name="browser" list="browsers" value="TONKHO300" id="mathietke"/> 
+			<datalist id="browsers">
+			  <option value="TONKHO300"/>
+			  <option value="TONKHO400"/>
+			  <option value="NHAMAYBIA400_01"/>
+			  <option value="NHAMAYBIA400_02"/>
+			</datalist>
+	    <label class="label label-danger label-error">điền thông tin cho mục này</label>
 	  </div>
 	</div>
 
@@ -53,15 +61,20 @@
 			<thead>
 				<tr>
 					<th>STT</th>
-					<th>MSC</th>
-					<th>Chiều dài</th>
 					<th>Ngày sản xuất</th>
+					<th>Chiều dài</th>
+					<th>MSC</th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr>
 					<td>1</td>
-					<td><input type="text" value=""></td>
+					<td class="input-append mydate date">
+					    <input type="text" value="">
+					    <span class="add-on">
+				        <i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
+				      </span>
+					</td>
 					<td><input type="text" value=""></td>
 					<td><input type="text" class="enterfill" value=""></td>
 					<!-- <td><span class="label label-danger delete">xóa</span></td> -->
@@ -83,28 +96,47 @@
 
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 	<script src="js/handlebars-v1.3.0.js"></script>
+	<script src="js/bootstrap-datetimepicker.min.js"></script>
+	<script src="js/bootstrap-datetimepicker.pt-BR.js"></script>
+ 	<script type="text/javascript">
+    $('.mydate').datetimepicker({
+      format: 'dd/MM/yyyy'
+    });
+  </script>
 
 	<script id="row-template" type="text/x-handlebars-template">
   	<tr>
 			<td>{{STT}}</td>
+			<td class="input-append mydate date">
+		    <input type="text" value="">
+		    <span class="add-on">
+	        <i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
+	      </span>
+			</td>
 			<td><input type="text" value=""></td>
-			<td><input type="text" value=""></td>
-			<td><input type="text" class="enterfill" value=""></td>
+			<td><input type="text" class="enterfill"  value=""></td>
 		</tr>
 	</script>
+
 	<script id="tbody-template" type="text/x-handlebars-template">
   	<tr>
 			<td>1</td>
-			<td><input type="text" value=""></td>
+			<td class="input-append mydate date">
+			    <input type="text" value="">
+			    <span class="add-on">
+		        <i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
+		      </span>
+			</td>
 			<td><input type="text" value=""></td>
 			<td><input type="text" class="enterfill" value=""></td>
 		</tr>
-	</script>
-	
+	</script>	
+
 	<script src="js/nhapkho.js"></script>
 	<!-- Call google api client onload = initialize -->
-	<script src="https://apis.google.com/js/client.js?onload=initialize"></script>	
+	<script src="https://apis.google.com/js/client.js?onload=initialize"></script>
+	
+
 </body>
 </html>

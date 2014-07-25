@@ -3,8 +3,11 @@ body { margin: auto; width: 1000px;}
 /* ------------------------------------------------------
 |	Header
 /*-------------------------------------------------------*/
+.header {
+	height: 185px;
+}
 .logo-company img{
-	max-width: 160px;
+	max-width: 145px;
 	cursor: pointer;
 }
 .header-content {
@@ -14,9 +17,12 @@ body { margin: auto; width: 1000px;}
 	text-align: center;
 }
 	.user-logged img{
-		max-width: 115px;
+		width: 120px;
+		height: 120px;
 	}
-
+.row-header {
+	margin-top: 10px;
+}
 /* ------------------------------------------------------
 |	Content
 /*-------------------------------------------------------*/
@@ -53,7 +59,6 @@ body { margin: auto; width: 1000px;}
 .table-striped input {
 	width: 90%;
 }
-.error {display: none}
 .loading {
 	display: none;
 	float: right;
@@ -76,11 +81,11 @@ body { margin: auto; width: 1000px;}
 |	Content
 /*-------------------------------------------------------*/
 .popup-show-data, .loading {
-	position: absolute;
+	position: fixed;
 	width: 100%;
 	top: 0px;
 	left: 0px;
-	min-height: 100%;
+	min-height: 110%;
 	text-align: center;
 	display: block;
 }
@@ -108,6 +113,57 @@ body { margin: auto; width: 1000px;}
 	width: 100px;
 }
 
+
+/* ------------------------------------------------------
+|	nhapkho.html
+/*-------------------------------------------------------*/
+.my-form {
+	float: left;
+	margin: 0px 55px;
+}
+.my-form label {
+	font-weight: bold;
+}
+.sum {
+	font-size: 18px;
+	padding: 10px;
+	background-color: #2d6ca2 ;
+}
+.col-2, .col-8{
+	float: left;
+	position: relative;
+	min-height: 1px;
+	padding-right: 15px;
+	padding-left: 15px;
+	text-align: center;
+}
+.col-2 {
+	width: 14.66666667%;	
+}
+.col-8 {
+	width: 61.66666667%;
+}
+.my-row {
+	margin-right: -15px;
+	margin-left: -15px;
+}
+h1 {
+	font-size: 36px;
+	margin-top: 20px;
+	margin-bottom: 10px;
+	font-family: inherit;
+	font-weight: 500;
+	line-height: 1.1;
+	color: inherit;
+}
+.user-name {
+	float: center;
+	line-height: 3;
+}
+.label-error{
+	background-color: #d9534f;
+	display: none;
+}
 
 footer {
 	min-height: 50px;

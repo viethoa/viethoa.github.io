@@ -19,15 +19,18 @@ Handlebars.registerHelper("math", function(lvalue, operator, rvalue, options) {
 //		OAuth 2.0 authorization.
 /* ------------------------------------------------------------*/
 var tableId = '1Ed8oQjlUZu3taYzbjEhUePlr6Y-7WJnLoazC8Th1';
-var clientId = '620854073277-21qpvpu2sk8k0fb0llvvfcjm8c7o876d.apps.googleusercontent.com';
-var apiKey = 'AIzaSyD4REk101IKAOV0bCRU2ZqLttWDmCdgBmA';
+// var clientId = '620854073277-21qpvpu2sk8k0fb0llvvfcjm8c7o876d.apps.googleusercontent.com';
+// var apiKey = 'AIzaSyD4REk101IKAOV0bCRU2ZqLttWDmCdgBmA';
+var clientId = '620854073277-qhsnd3l79nkoh8emfkmhce81pp0f6eti.apps.googleusercontent.com';
+var apiKey = 'AIzaSyAoFEVwvxeLEZS2sOnckHU2zBPRYPgA-gA';
 var scopes = 'https://www.googleapis.com/auth/fusiontables';
 
 var table     = $('#table-striped tbody'),
     NhapKho   = $('#btn-nhapkho'),
     XuatKho   = $('#btn-xuatkho'),
     addPhieu  = $('#btn-taophieumoi'),
-    boolXuatNhap = true;
+    btnLefts  = $('.sidebar'),
+    loading   = $('.loading');
 
 // login to pass authorization
 function initialize() {
@@ -41,7 +44,19 @@ function auth(immediate) {
     client_id: clientId,
     scope: scopes,
     immediate: immediate
-  }, InsertData);
+  }, function(res){
+
+    var url = "https://www.googleapis.com/oauth2/v1/userinfo?access_token=" + res.access_token;
+    $.get(url, function(resp){
+      // console.log(resp);
+      var user = $('#my-user');
+
+      user.find('span').html(resp.name);
+      user.find('img').attr('src', resp.picture);
+    });
+
+    InsertData(); 
+  });
 }
 
 
@@ -61,16 +76,13 @@ table.on('click', '.update', function() {
 });
 
 function btnClick(t) {
-  var row = $(t).closest('tr');
-  console.log(row);
+  var rowId = $(t).attr('data-id');
+  var table = $(t).attr('data-table');
 
-  var tdSoChungTu = $(row).find('td')[1];
-  var id = $(tdSoChungTu).html();
-
-  if(boolXuatNhap)
-    window.location.href = "showdata.html?id=" + id;
+  if(table === "NhapKho")
+    window.location.href = "showdata.html?id=" + rowId;
   else 
-    window.location.href = "showdataxuatkho.html?id=" + id;
+    window.location.href = "showdataxuatkho.html?id=" + rowId;
 }
 
 addPhieu.click(function() {
@@ -82,44 +94,52 @@ addPhieu.click(function() {
 //    Request to SELECT data.
 /* ------------------------------------------------------------*/
 NhapKho.click(function() {
-  // active this
-	$(this).toggleClass('btn-default').toggleClass('btn-primary');
-	XuatKho.toggleClass('btn-default').toggleClass('btn-primary');
+  // select data
+  var sql = 'SELECT rowId,SoChungTu,NgayChungTu,MaThietKe,SoLuong FROM ' + 
+            tableId + ' WHERE LoaiChungTu = 0';
 
-  // is Nhap Kho
-  boolXuatNhap = true;
+  btnClickHandle($(this), sql, 'NhapKho');
 
   // show button Tao Phieu Moi
   addPhieu.fadeIn(300);
-
-  // select data
-	InsertData();
 });
+
 
 XuatKho.click(function() {
-  // active this
-	$(this).toggleClass('btn-default').toggleClass('btn-primary');
-	NhapKho.toggleClass('btn-default').toggleClass('btn-primary');
-
-  // is Xuat Kho
-  boolXuatNhap = false;
-
-  // hide button nhap kho
-  addPhieu.fadeOut(300);
-
   // select data
-	query('SELECT * FROM ' + tableId + ' WHERE LoaiChungTu = 1');			
+  var sql = 'SELECT rowId,SoChungTu,NgayChungTu,MaThietKe,SoLuong FROM ' + 
+            tableId + ' WHERE LoaiChungTu = 1';
+
+  btnClickHandle($(this), sql, 'XuatKho');
+
+	// hide button nhap kho
+  addPhieu.fadeOut(300);
 });
 
+
+function btnClickHandle(t, sql, call) {
+  // remove all active
+  btnLefts.find('li>button').removeClass('btn-primary')
+                            .addClass('btn-default');
+
+  // active this
+  $(t).toggleClass('btn-default').toggleClass('btn-primary');
+
+  // Get data in server
+  query(sql, call);
+}
+
 function InsertData() {
-  query('SELECT * FROM ' + tableId + ' WHERE LoaiChungTu = 0');
+  var sql = 'SELECT rowId,SoChungTu,NgayChungTu,MaThietKe,SoLuong FROM ' + 
+            tableId + ' WHERE LoaiChungTu = 0';
+  query(sql, 'NhapKho');
 }
 
 
 /* ------------------------------------------------------------*/
 //    Send an SQL query to Fusion Tables.
 /* ------------------------------------------------------------*/
-function query(query) {
+function query(query, call) {
   var lowerCaseQuery = query.toLowerCase();
   var path = '/fusiontables/v1/query';
 
@@ -134,7 +154,7 @@ function query(query) {
   	if(output.rows != null) {
       var row;
 
-      if(boolXuatNhap == true)
+      if(call == 'NhapKho')
         row = $("#tbody-template").html();
       else
         row = $("#tbody-template-2").html();
