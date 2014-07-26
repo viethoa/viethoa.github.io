@@ -19,10 +19,10 @@ Handlebars.registerHelper("math", function(lvalue, operator, rvalue, options) {
 //		OAuth 2.0 authorization.
 /* ------------------------------------------------------------*/
 var tableId = '1Ed8oQjlUZu3taYzbjEhUePlr6Y-7WJnLoazC8Th1';
-var clientId = '620854073277-21qpvpu2sk8k0fb0llvvfcjm8c7o876d.apps.googleusercontent.com';
-var apiKey = 'AIzaSyD4REk101IKAOV0bCRU2ZqLttWDmCdgBmA';
-// var clientId = '620854073277-qhsnd3l79nkoh8emfkmhce81pp0f6eti.apps.googleusercontent.com';
-// var apiKey = 'AIzaSyAoFEVwvxeLEZS2sOnckHU2zBPRYPgA-gA';
+// var clientId = '620854073277-21qpvpu2sk8k0fb0llvvfcjm8c7o876d.apps.googleusercontent.com';
+// var apiKey = 'AIzaSyD4REk101IKAOV0bCRU2ZqLttWDmCdgBmA';
+var clientId = '620854073277-qhsnd3l79nkoh8emfkmhce81pp0f6eti.apps.googleusercontent.com';
+var apiKey = 'AIzaSyAoFEVwvxeLEZS2sOnckHU2zBPRYPgA-gA';
 var scopes = 'https://www.googleapis.com/auth/fusiontables';
 
 var table     = $('#table-striped tbody'),
@@ -46,6 +46,7 @@ function auth(immediate) {
     immediate: immediate
   }, function(res){
 
+    // Get user form google api
     var url = "https://www.googleapis.com/oauth2/v1/userinfo?access_token=" + res.access_token;
     $.get(url, function(resp){
       // console.log(resp);
@@ -55,7 +56,10 @@ function auth(immediate) {
       user.find('img').attr('src', resp.picture);
     });
 
-    InsertData(); 
+    // Get data form fusion table
+    var sql = 'SELECT rowId,SoChungTu,NgayChungTu,MaThietKe,SoLuong FROM ' + 
+              tableId + ' WHERE LoaiChungTu = 0 ORDER BY NgayChungTu DESC LIMIT 50';
+    query(sql, 'NhapKho');
   });
 }
 
@@ -64,7 +68,31 @@ function auth(immediate) {
 //		Events Handling
 /* ------------------------------------------------------------*/
 var myDate = new Date();
-$('.my-date').html(myDate.getDate() + ' - ' + myDate.getMonth() + ' - ' + myDate.getFullYear());
+var dd = myDate.getDate();
+var mm = myDate.getMonth() + 1; //January is 0!
+var yyyy = myDate.getFullYear();
+$('.my-date').html(dd + ' - ' + mm + ' - ' + yyyy);
+
+// Upload image
+var logo = $('.logo-company'),
+    file = $('#file');
+logo.hover(function(){
+  file.toggleClass('upload-file-on').toggleClass('upload-file-off');
+});
+
+function PreviewImage() {
+    var oFReader = new FileReader(),
+        file = document.getElementById("fileUpload").files[0],
+        img  = document.getElementById("imgUploadProfile");
+
+    oFReader.readAsDataURL(file);
+
+    oFReader.onload = function (oFREvent) {
+        img.src = oFREvent.target.result;
+
+        
+    }
+};
 
 // on click Button VIEW, UPDATE
 table.on('click', '.view', function() {
@@ -86,7 +114,9 @@ function btnClick(t) {
 }
 
 addPhieu.click(function() {
-  window.location.href = "nhapkho.html";
+  var SCT = table.find('tr:first').attr('data-id').split('-');
+
+  window.location.href = "nhapkho.html?SCT=" + SCT[2];
 });
 
 
@@ -94,45 +124,39 @@ addPhieu.click(function() {
 //    Request to SELECT data.
 /* ------------------------------------------------------------*/
 NhapKho.click(function() {
-  // select data
-  var sql = 'SELECT rowId,SoChungTu,NgayChungTu,MaThietKe,SoLuong FROM ' + 
-            tableId + ' WHERE LoaiChungTu = 0';
 
-  btnClickHandle($(this), sql, 'NhapKho');
-
-  // show button Tao Phieu Moi
+  btnClickHandle($(this), 'NhapKho');
   addPhieu.fadeIn(300);
 });
 
 
 XuatKho.click(function() {
-  // select data
-  var sql = 'SELECT rowId,SoChungTu,NgayChungTu,MaThietKe,SoLuong FROM ' + 
-            tableId + ' WHERE LoaiChungTu = 1';
 
-  btnClickHandle($(this), sql, 'XuatKho');
-
-	// hide button nhap kho
+  btnClickHandle($(this), 'XuatKho');
   addPhieu.fadeOut(300);
 });
 
 
-function btnClickHandle(t, sql, call) {
+function btnClickHandle(t, call) {
+  var sql = 'SELECT rowId,SoChungTu,NgayChungTu,MaThietKe,SoLuong ';
+
+  if(call === 'NhapKho')
+    sql += 'FROM ' + tableId + ' WHERE LoaiChungTu = 0 ';
+  else 
+    sql += 'FROM ' + tableId + ' WHERE LoaiChungTu = 1 ';
+            
+  sql += 'ORDER BY NgayChungTu DESC LIMIT 50';
+
   // remove all active
-  btnLefts.find('li>button').removeClass('btn-primary')
-                            .addClass('btn-default');
+  btnLefts.find('li>button')
+            .removeClass('btn-primary')
+            .addClass('btn-default');
 
   // active this
   $(t).toggleClass('btn-default').toggleClass('btn-primary');
 
   // Get data in server
   query(sql, call);
-}
-
-function InsertData() {
-  var sql = 'SELECT rowId,SoChungTu,NgayChungTu,MaThietKe,SoLuong FROM ' + 
-            tableId + ' WHERE LoaiChungTu = 0';
-  query(sql, 'NhapKho');
 }
 
 
@@ -144,9 +168,6 @@ function query(query, call) {
   var path = '/fusiontables/v1/query';
 
   var fillTable = function(output) {
-    //console.log(output);
-
-  	output = jQuery.parseJSON(output);
 
   	table.html('');
   	var STT = 0;
@@ -167,9 +188,7 @@ function query(query, call) {
 
   var callback = function() {
     return function(resp) {
-      var output = JSON.stringify(resp);
-
-      fillTable(output);
+      fillTable(resp);
     };
   }
 
@@ -200,4 +219,41 @@ function query(query, call) {
 function runClientRequest(request, callback) {
   var restRequest = gapi.client.request(request);
   restRequest.execute(callback);
+}
+
+// O'clock
+function time() {
+   var today = new Date();
+   var weekday=new Array(7);
+   weekday[0]="Chủ nhật";
+   weekday[1]="Thứ hai";
+   weekday[2]="Thứ ba";
+   weekday[3]="Thứ tư";
+   weekday[4]="Thứ năm";
+   weekday[5]="Thứ sáu";
+   weekday[6]="Thứ bảy";
+   var day = weekday[today.getDay()]; 
+   var dd = today.getDate();
+   var mm = today.getMonth()+1; //January is 0!
+   var yyyy = today.getFullYear();
+   var h=today.getHours();
+   var m=today.getMinutes();
+   var s=today.getSeconds();
+   m=checkTime(m);
+   s=checkTime(s);
+   nowTime = h+":"+m+":"+s;
+   if(dd<10){dd='0'+dd} if(mm<10){mm='0'+mm} today = day+'<br> '+ dd+'/'+mm+'/'+yyyy;
+
+   tmp='<span class="date">'+today+' <br> '+nowTime+'</span>';
+
+   document.getElementById("clock").innerHTML=tmp;
+
+   clocktime=setTimeout("time()","1000","JavaScript");
+   function checkTime(i)
+   {
+      if(i<10){
+        i="0" + i;
+      }
+      return i;
+   }
 }

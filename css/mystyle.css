@@ -3,12 +3,22 @@ body { margin: auto; width: 1000px;}
 /* ------------------------------------------------------
 |	Header
 /*-------------------------------------------------------*/
+
+.upload-file-on{
+	position: absolute;
+	display: none;
+}
+.upload-file-off{
+	position: absolute;
+	display: block;
+}
 .header {
 	height: 185px;
 }
 .logo-company img{
 	max-width: 145px;
 	cursor: pointer;
+	/*margin-top:20px;*/
 }
 .header-content {
 	text-align: center;
@@ -21,18 +31,25 @@ body { margin: auto; width: 1000px;}
 		height: 120px;
 	}
 .row-header {
-	margin-top: 10px;
+	margin-top: 5px;
 }
+.oclock {
+	position: absolute;
+	top: 130px;
+	left: 46%;
+}
+
 /* ------------------------------------------------------
 |	Content
 /*-------------------------------------------------------*/
 .content-above {
-	margin-top: 50px;
 	border-bottom: 1px solid #ccc;
 	padding-bottom: 15px;
+	margin-top: 85px;
 }
 .my-date {
-	font-size: 2.3rem;
+	font-size: 2.1rem;
+	margin-top: 4px;
 }
 .sidebar {
 	list-style: none;
@@ -138,7 +155,7 @@ body { margin: auto; width: 1000px;}
 	text-align: center;
 }
 .col-2 {
-	width: 14.66666667%;	
+	width: 14.3%;	
 }
 .col-8 {
 	width: 61.66666667%;

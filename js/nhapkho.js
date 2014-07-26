@@ -3,10 +3,10 @@
 /* ------------------------------------------------------------*/
 var ChungTu_tableId = '1Ed8oQjlUZu3taYzbjEhUePlr6Y-7WJnLoazC8Th1';
 var Coc_tableId = '16S5xV2WhuOzYyr4oNtPuOcq1M2eOkE-JqkwRfXuc';
-var clientId = '620854073277-21qpvpu2sk8k0fb0llvvfcjm8c7o876d.apps.googleusercontent.com';
-var apiKey = 'AIzaSyD4REk101IKAOV0bCRU2ZqLttWDmCdgBmA';
-// var clientId = '620854073277-qhsnd3l79nkoh8emfkmhce81pp0f6eti.apps.googleusercontent.com';
-// var apiKey = 'AIzaSyAoFEVwvxeLEZS2sOnckHU2zBPRYPgA-gA';
+// var clientId = '620854073277-21qpvpu2sk8k0fb0llvvfcjm8c7o876d.apps.googleusercontent.com';
+// var apiKey = 'AIzaSyD4REk101IKAOV0bCRU2ZqLttWDmCdgBmA';
+var clientId = '620854073277-qhsnd3l79nkoh8emfkmhce81pp0f6eti.apps.googleusercontent.com';
+var apiKey = 'AIzaSyAoFEVwvxeLEZS2sOnckHU2zBPRYPgA-gA';
 var scopes = 'https://www.googleapis.com/auth/fusiontables';
 
 // login to pass authorization
@@ -21,6 +21,17 @@ function auth(immediate) {
     client_id: clientId,
     scope: scopes,
     immediate: immediate
+  }, function(res){
+
+    // Get user form google api
+    var url = "https://www.googleapis.com/oauth2/v1/userinfo?access_token=" + res.access_token;
+    $.get(url, function(resp){
+      // console.log(resp);
+      var user = $('#my-user');
+
+      user.find('span').html(resp.name);
+      user.find('img').attr('src', resp.picture);
+    });
   });
 }
 
@@ -80,6 +91,20 @@ var sochungtu 	= $('#sochungtu'),
 		countSend 	= 0,
 		countRes		= 0,
 		flag				= false;
+
+// Auto fill So Chung Tu : PNK-0714
+var key = parseInt(window.location.search.split('=')[1]) + 1;
+var SCT = "PNK-0714-";
+
+if(key < 10) SCT += '00' + key;
+else if(key < 100) SCT += '0' + key;
+else SCT += key;
+
+sochungtu.val(SCT);
+
+
+
+
 
 function initNhapKho() {
 	content.STT = 1;
