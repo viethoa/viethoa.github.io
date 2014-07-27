@@ -19,10 +19,10 @@ Handlebars.registerHelper("math", function(lvalue, operator, rvalue, options) {
 //		OAuth 2.0 authorization.
 /* ------------------------------------------------------------*/
 var tableId = '1Ed8oQjlUZu3taYzbjEhUePlr6Y-7WJnLoazC8Th1';
-var clientId = '620854073277-21qpvpu2sk8k0fb0llvvfcjm8c7o876d.apps.googleusercontent.com';
-var apiKey = 'AIzaSyD4REk101IKAOV0bCRU2ZqLttWDmCdgBmA';
-// var clientId = '620854073277-qhsnd3l79nkoh8emfkmhce81pp0f6eti.apps.googleusercontent.com';
-// var apiKey = 'AIzaSyAoFEVwvxeLEZS2sOnckHU2zBPRYPgA-gA';
+// var clientId = '620854073277-21qpvpu2sk8k0fb0llvvfcjm8c7o876d.apps.googleusercontent.com';
+// var apiKey = 'AIzaSyD4REk101IKAOV0bCRU2ZqLttWDmCdgBmA';
+var clientId = '620854073277-qhsnd3l79nkoh8emfkmhce81pp0f6eti.apps.googleusercontent.com';
+var apiKey = 'AIzaSyAoFEVwvxeLEZS2sOnckHU2zBPRYPgA-gA';
 var scopes = 'https://www.googleapis.com/auth/fusiontables';
 
 var table     = $('#table-striped tbody'),
@@ -114,9 +114,13 @@ function btnClick(t) {
 }
 
 addPhieu.click(function() {
-  var SCT = table.find('tr:first').attr('data-id').split('-');
+  var row = table.find('tr:first');
 
-  window.location.href = "nhapkho.html?SCT=" + SCT[2];
+  if(row != null) {
+    var SCT = $(row).attr('data-id').split('-');
+    window.location.href = "nhapkho.html?SCT=" + SCT[2];
+  }
+  else window.location.href = "nhapkho.html?SCT=000";
 });
 
 
