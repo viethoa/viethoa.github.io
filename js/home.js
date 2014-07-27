@@ -114,10 +114,10 @@ function btnClick(t) {
 }
 
 addPhieu.click(function() {
-  var row = table.find('tr:first');
+  var id = table.find('tr:first').attr('data-id');
 
-  if(row != null) {
-    var SCT = $(row).attr('data-id').split('-');
+  if(id != null && id != "") {
+    var SCT = id.split('-');
     window.location.href = "nhapkho.html?SCT=" + SCT[2];
   }
   else window.location.href = "nhapkho.html?SCT=000";
