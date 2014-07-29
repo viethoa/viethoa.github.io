@@ -46,21 +46,23 @@ function auth(immediate) {
     scope: scopes,
     immediate: immediate
   }, function(res){
-
-    // Get user form google api
+    
     var url = "https://www.googleapis.com/oauth2/v1/userinfo?access_token=" + res.access_token;
     $.get(url, function(resp){
       // console.log(resp);
       var user = $('#my-user');
 
       user.find('span').html(resp.name);
-      user.find('img').attr('src', resp.picture);
+      user.find('#logo-user').css('background-image', 'url(' + resp.picture + ')');
     });
 
     // Get data form fusion table
-    var sql = 'SELECT rowId,SoChungTu,NgayChungTu,MaThietKe,SoLuong FROM ' + 
-              tableId + ' WHERE LoaiChungTu = 0 ORDER BY NgayChungTu DESC LIMIT 50';
-    query(sql, 'NhapKho');
+    var sql = [];
+    sql.push('SELECT rowId,SoChungTu,NgayChungTu,MaThietKe,SoLuong FROM ');
+    sql.push(tableId)
+    sql.push(' WHERE LoaiChungTu = 0 ORDER BY NgayChungTu DESC LIMIT 50');
+
+    query(sql.join(''), 'NhapKho');
   });
 }
 
@@ -85,8 +87,6 @@ function PreviewImage() {
 
     oFReader.onload = function (oFREvent) {
         img.src = oFREvent.target.result;
-
-        
     }
 };
 
@@ -111,13 +111,43 @@ function btnClick(t) {
 }
 
 addPhieu.click(function() {
-  var id = table.find('tr:first').attr('data-id');
+  var rows = table.find('tr');
+  var data = [];
 
-   if(id != null && id != "") {
-    var SCT = id.split('-');
-      window.location.href = "nhapkho.html?SCT=" + SCT[2];
-    }
-    else window.location.href = "nhapkho.html?SCT=000";
+  console.log(rows, data.length);
+
+  $.each(rows, function(key, row){
+    (function(key, row){
+      var item = {
+        'SoChungTu': $(row).attr('data-id'),
+        'NgayChungTu': $(row).attr('data-date')
+      };
+
+      if(key == 0) 
+        data[key] = item;
+      else {
+        if(item.NgayChungTu == data[0].NgayChungTu)
+          data[key] = item;
+        else return;
+      }
+    })(key, row);
+  });
+
+  if(data.length == 0) 
+    window.location.href = "nhapkho.html?SCT=000";
+  else {
+    var item  = data[data.length - 1]; 
+    var SCT   = item.SoChungTu.split('-');
+    window.location.href = "nhapkho.html?SCT=" + SCT[2];
+  }
+
+  // var id = table.find('tr:first').attr('data-id');
+
+  //  if(id != null && id != "") {
+  //   var SCT = id.split('-');
+  //     window.location.href = "nhapkho.html?SCT=" + SCT[2];
+  //   }
+  //   else window.location.href = "nhapkho.html?SCT=000";
 });
 
 

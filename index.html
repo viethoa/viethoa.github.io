@@ -30,7 +30,8 @@
 			<h1>VER - BETA - 101</h1>
 		</div>
 		<div id="my-user" class="col-md-2 user-logged">
-			<img src="images/user.png" alt="Khuất Việt Hòa - 01286.84.83.84">
+			<div id="logo-user"></div>
+			<!-- <img src="images/user.png"> -->
 			<span class="user-name">Your Name</span>
 		</div>
 	</div>
@@ -159,7 +160,7 @@
 	<!-- Row Template for PhieuNhap -->
 	<script id="tbody-template" type="text/x-handlebars-template">
 		{{#each this}}
-	  	<tr data-id="{{this.[1]}}">
+	  	<tr data-id="{{this.[1]}}" data-date="{{this.[2]}}">
 				<td>{{math @index "+" 1}}</td>
 				<td>{{this.[1]}}</td>
 				<td>{{this.[2]}}</td>
@@ -167,7 +168,7 @@
 				<td>{{this.[4]}}</td>
 				<td>
 					<button data-table="NhapKho" data-id="{{this.[0]}}" class="btn btn-success btn-xs view">
-						View</button>
+						view</button>
 					<button data-table="NhapKho" data-id="{{this.[0]}}" class="btn btn-info btn-xs update">
 						update</button>
 				</td>
@@ -185,7 +186,7 @@
 				<td>{{this.[3]}}</td>
 				<td>{{this.[4]}}</td>
 				<td>
-					<button data-table="XuatKho" data-id="{{this.[0]}}" class="btn btn-success btn-xs view">View</button>
+					<button data-table="XuatKho" data-id="{{this.[0]}}" class="btn btn-success btn-xs view">view</button>
 				</td>
 			</tr>
 		{{/each}}

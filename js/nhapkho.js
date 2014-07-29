@@ -3,6 +3,7 @@
 /* ------------------------------------------------------------*/
 var ChungTu_tableId = '1Ed8oQjlUZu3taYzbjEhUePlr6Y-7WJnLoazC8Th1';
 var Coc_tableId = '16S5xV2WhuOzYyr4oNtPuOcq1M2eOkE-JqkwRfXuc';
+var HeThongId = '1TRG3TqHDWKekCK7stxR_yRfp7y23PBvYzJnrssOj';
 var clientId = '620854073277-21qpvpu2sk8k0fb0llvvfcjm8c7o876d.apps.googleusercontent.com';
 var apiKey = 'AIzaSyD4REk101IKAOV0bCRU2ZqLttWDmCdgBmA';
 // var clientId = '620854073277-qhsnd3l79nkoh8emfkmhce81pp0f6eti.apps.googleusercontent.com';
@@ -21,17 +22,6 @@ function auth(immediate) {
     client_id: clientId,
     scope: scopes,
     immediate: immediate
-  }, function(res){
-
-    // Get user form google api
-    var url = "https://www.googleapis.com/oauth2/v1/userinfo?access_token=" + res.access_token;
-    $.get(url, function(resp){
-      // console.log(resp);
-      var user = $('#my-user');
-
-      user.find('span').html(resp.name);
-      user.find('img').attr('src', resp.picture);
-    });
   });
 }
 
@@ -41,46 +31,53 @@ $('.mydate').data('datetimepicker').setDate((new Date).getTime());
 $('td.mydate').data('datetimepicker').setDate((new Date).getTime());
 
 
-/* ------------------------------------------------------------*/
-//		Auto add row when call event enter
-/* ------------------------------------------------------------*/
 var table = $('#table-striped tbody'),
 		sum = $('.sum'),
 		content = {STT: 1};
 
+/* ------------------------------------------------------------*/
+//		Auto add row when call event enter
+/* ------------------------------------------------------------*/
 $('#table-striped').on('keypress', '.enterfill', function(e) {
 	if(e.which == 13) {
 		//Seccion to checkIn value of this
 		var val = $(this).val(),
 				first = val.substring(0,3);
-		//console.log(val, first);
 
-		if(val.length > 8 || first != "14.") {
+		if(val.length != 9 || first != "14.") {
 			alert('Nhập liệu không đúng !!');
 		} 
 		else { // Seccion fo auto add row + focus next input
 			
-			content.STT++;
+			var row = $(this).closest('tr'),
+					next = $(row).next();
 
-			// remove class enterfill
-			$(this).toggleClass('enterfill');
+			// Have a NextRow
+			if(next.length == 1) {
 
-			// get template row
-			var row = $("#row-template").html();
-			var template = Handlebars.compile(row);
-			// add pend row into table
-			table.append(template(content));
+				$(next).find('.enterfill').focus();
+			}
+			else { // Don't have a NextRow
 
-			// activation datetime picker
-			table.find('.mydate:last').datetimepicker({
-	      format: 'dd/MM/yyyy'
-	    }).data('datetimepicker').setDate((new Date).getTime());
+				content.STT++;
 
-			// change focus
-			table.find('.enterfill').focus().val();
+				// get template row
+				var row = $("#row-template").html();
+				var template = Handlebars.compile(row);
+				// add pend row into table
+				table.append(template(content));
 
-			// change sum row
-			sum.html('Tổng: ' + content.STT + ' cọc');
+				// activation datetime picker
+				table.find('.mydate:last').datetimepicker({
+		      format: 'dd/MM/yyyy'
+		    }).data('datetimepicker').setDate((new Date).getTime());
+
+				// change focus
+				table.find('.enterfill').focus().val();
+
+				// change sum row
+				sum.html('Tổng: ' + content.STT + ' cọc');
+			}
 		}
 	}
 });
@@ -95,16 +92,39 @@ $('#table-striped').on('keypress', '.cd-enter-fill', function(e) {
 		// Seccion to check value
 		var val = $(this).val();
 		if(val.length == 0 || parseInt(val) > 99) {
+
 			alert('Nhập liệu không đúng !!');
 		}
-		else {
+		else { // Seccion to focus
 
-			// Seccion to focus
 			var row = $(this).closest('tr'),
 					next = $(row).next();
-			
+
+			// Have a NextRow
 			if(next.length == 1) {
+
 				$(next).find('.cd-enter-fill').focus();
+			}
+			else { // Don't have a NextRow
+
+				content.STT++;
+
+				// get template row
+				var row = $("#row-template").html();
+				var template = Handlebars.compile(row);
+				// add pend row into table
+				table.append(template(content));
+
+				// activation datetime picker
+				table.find('.mydate:last').datetimepicker({
+		      format: 'dd/MM/yyyy'
+		    }).data('datetimepicker').setDate((new Date).getTime());
+
+				// change focus
+				table.find('.cd-enter-fill:last').focus();
+
+				// change sum row
+				sum.html('Tổng: ' + content.STT + ' cọc');
 			}
 		}
 	}
@@ -115,7 +135,6 @@ $('#table-striped').on('keypress', '.cd-enter-fill', function(e) {
 $('#table-striped').on('click', '.delete', function() {
 	$(this).parent().parent().remove();
 })
-
 
 
 /* ------------------------------------------------------------*/
@@ -130,6 +149,7 @@ var sochungtu 	= $('#sochungtu'),
 		countRes		= 0,
 		flag				= false;
 
+
 // Auto fill So Chung Tu : PNK-0714
 var key = parseInt(window.location.search.split('=')[1]) + 1;
 var SCT = "PNK-0714-";
@@ -141,9 +161,6 @@ else SCT += key;
 sochungtu.val(SCT);
 
 
-
-
-
 function initNhapKho() {
 	content.STT = 1;
 	countSend 	= 0;
@@ -152,26 +169,66 @@ function initNhapKho() {
 	
 	sum.html('Tổng: ' + content.STT + ' cọc');
 
-	sochungtu.val('');
+	// Set SoChungTu value
+	key += 1; SCT = "PNK-0714-";
+	if(key < 10) SCT += '00' + key;
+	else if(key < 100) SCT += '0' + key;
+	else SCT += key;
+	sochungtu.val(SCT);
+
+	// Setup data table
+	var row = $("#tbody-template").html();
+	var template = Handlebars.compile(row);
+  table.html(template());
+
+  // activation datatime picker
+  table.find('.mydate:last').datetimepicker({
+    format: 'dd/MM/yyyy'
+  }).data('datetimepicker').setDate((new Date).getTime());
+
 	$('.mydate').data('datetimepicker').setDate((new Date).getTime());
 }
 
+
 InsertData.click( function() {
-	
 	if(checkOutData(sochungtu) && checkOutData(ngaychungtu) && checkOutData(mathietke))
 	{
-		$(this).attr("disabled", true);
-		loading.fadeIn(300);
+		// CheckIn value on data table
+		var rows = table.find('tr'),
+				flag = false;
 
-		// insert table: Chứng Tù
-		InsertChungTung();
+		$.each(rows, function(key, row) {
+			(function(row){
+				var inputs 		= $(row).find('td>input'),
+						chieudai 	= $(inputs[1]).val(), // ChieuDai is munber => nhập text => this.val() = rỗng
+						msc 	 		= $(inputs[2]).val(), 
+						first  		= msc.substring(0,3);
 
-		// insert table: Cọc được sau khi insert xong ChungTu
-		// setTimeout(function(){
-		// 	InsertCocChungTus();
-		// }, 2500);
+				// MSC và ChieuDai == "" => Khong bao loi, nhung k insert
+				if(msc == "" && chieudai == "")
+					content.STT -= 1;
+
+				else  {
+					if(	msc.length != 9 || first != "14." 
+						|| parseInt(chieudai) > 99 || chieudai == "") {						
+						alert('Nhập liệu không đúng !!');
+						flag = true;
+						return;
+					}
+				}
+			})(row);
+		});
+
+		// Insert data 
+		if (flag == false) {			
+			$(this).attr("disabled", true);
+			loading.fadeIn(300);
+			// insert table: Chứng Tù
+			InsertChungTung();
+		}
 	}
 });
+
 
 function checkOutData(t) {
 	if(t.val() === '') {
@@ -182,6 +239,7 @@ function checkOutData(t) {
 	}
 	return true;
 }
+
 
 function InsertChungTung() {
 	var insert = [];
@@ -196,6 +254,7 @@ function InsertChungTung() {
 	query(insert.join(''), 'ChungTu');
 }
 
+
 function InsertCocChungTus(rowId) {
 	var rows = table.find('tr'),
 			second = 0;
@@ -205,31 +264,32 @@ function InsertCocChungTus(rowId) {
 		   InsertCocChungTu(row, rowId);
 		}, second);
 
-		second += 2000; countSend++;
+		second += 2000;
 	});
 
 	flag = true;
 }
 
 function InsertCocChungTu(row, rowId) {
-	var cols = $(row).find('td');
-	var insert = [];
+	var inputs = $(row).find('td>input');
 
-	insert.push('INSERT INTO ');
-	insert.push(Coc_tableId);
-	insert.push(' (NgaySanXuat, ChieuDai, MSC, SoChungTu, TinhTrang) VALUES (');
+	if($(inputs[1]).val() != "" && $(inputs[2]).val() != "") {
+		var insert = [];
+		insert.push('INSERT INTO ');
+		insert.push(Coc_tableId);
+		insert.push(' (NgaySanXuat, ChieuDai, MSC, SoChungTu, TinhTrang) VALUES (');
 
-	$.each(cols, function(key, col) {
-    if(key > 0) {
-    	insert.push("'"+ $(col).find('input').val() +"',");
-    }
-	});
+		$.each(inputs, function(key, input) {
+	    insert.push("'"+ $(input).val() +"',");
+		});
 
-	insert.push("'"+ rowId +"',");
-	insert.push("0 )");
-	query(insert.join(''));
+		insert.push("'"+ rowId +"',");
+		insert.push("0 )");
+
+		countSend++;
+		query(insert.join(''), "CocChungTu");
+	}
 }
-
 
 /* ------------------------------------------------------------*/
 //		Send an SQL query to Fusion Tables.
@@ -239,38 +299,30 @@ function query(query, call) {
   var path = '/fusiontables/v1/query';
 
   var callback = function() {
-
     return function(resp) {
+    	console.log(resp);
 
     	if(call === "ChungTu") {
     		var rowChungTuID = resp.rows[0][0];
 
     		InsertCocChungTus(rowChungTuID);
-    	}      
+    	}
+    	
+    	if(call === "CocChungTu") {
+    		// resquet number received
+	      countRes++;
 
-      // resquet number received
-      countRes++;
+	      // finish Insert
+	      if((countSend) == countRes && flag === true) {
 
-      // finish Insert
-      if((countSend + 1) == countRes && flag === true) {
+	      	loading.fadeOut(300);
+	      	InsertData.attr("disabled", false);
 
-      	loading.fadeOut(300);
-      	InsertData.attr("disabled", false);
+		      // setup attributs
+		      initNhapKho();
+	      }
+    	}
 
-      	var row = $("#tbody-template").html();
-				var template = Handlebars.compile(row);
-
-				// finish, set table is empty
-	      table.html(template());
-
-	      // activation datatime picker
-	      table.find('.mydate:last').datetimepicker({
-		      format: 'dd/MM/yyyy'
-		    }).data('datetimepicker').setDate((new Date).getTime());
-
-	      // setup attributs
-	      initNhapKho();
-      }
     };
   }
 

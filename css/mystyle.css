@@ -15,6 +15,9 @@ body { margin: auto; width: 1000px;}
 .header {
 	height: 185px;
 }
+.logo-company {
+	padding: 20px;
+}
 .logo-company img{
 	max-width: 145px;
 	cursor: pointer;
@@ -25,20 +28,31 @@ body { margin: auto; width: 1000px;}
 }
 .user-logged {
 	text-align: center;
+	padding-top: 10px;
 }
 	.user-logged img{
 		width: 120px;
 		height: 120px;
 	}
 .row-header {
-	margin-top: 5px;
+	/*margin-top: 5px;*/
 }
 .oclock {
 	position: absolute;
 	top: 130px;
 	left: 46%;
 }
-
+.user-name {
+	float: center;
+	line-height: 2;
+}
+div#logo-user {
+	width: 140px;
+	height: 120px;
+	background-image: url('../images/user.png');
+	background-size: cover;
+	background-position: center center;
+}
 /* ------------------------------------------------------
 |	Content
 /*-------------------------------------------------------*/
@@ -172,10 +186,6 @@ h1 {
 	font-weight: 500;
 	line-height: 1.1;
 	color: inherit;
-}
-.user-name {
-	float: center;
-	line-height: 3;
 }
 .label-error{
 	background-color: #d9534f;
