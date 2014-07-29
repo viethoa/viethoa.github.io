@@ -114,8 +114,7 @@ addPhieu.click(function() {
   var rows = table.find('tr');
   var data = [];
 
-  console.log(rows, data.length);
-
+  // get data in row that it have Max NgayChungTu
   $.each(rows, function(key, row){
     (function(key, row){
       var item = {
@@ -133,6 +132,7 @@ addPhieu.click(function() {
     })(key, row);
   });
 
+  // Select Max id, change page
   if(data.length == 0) 
     window.location.href = "nhapkho.html?SCT=000";
   else {
@@ -140,14 +140,6 @@ addPhieu.click(function() {
     var SCT   = item.SoChungTu.split('-');
     window.location.href = "nhapkho.html?SCT=" + SCT[2];
   }
-
-  // var id = table.find('tr:first').attr('data-id');
-
-  //  if(id != null && id != "") {
-  //   var SCT = id.split('-');
-  //     window.location.href = "nhapkho.html?SCT=" + SCT[2];
-  //   }
-  //   else window.location.href = "nhapkho.html?SCT=000";
 });
 
 
