@@ -227,7 +227,7 @@ InsertData.click( function() {
 			InsertChungTung();
 		}
 		else {
-			content.STT == 1;
+			content.STT = 1;
 			alert('Nhập liệu không đúng !!');
 		}
 	}
