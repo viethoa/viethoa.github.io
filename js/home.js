@@ -19,10 +19,10 @@ Handlebars.registerHelper("math", function(lvalue, operator, rvalue, options) {
 //		OAuth 2.0 authorization.
 /* ------------------------------------------------------------*/
 var tableId = '1Ed8oQjlUZu3taYzbjEhUePlr6Y-7WJnLoazC8Th1';
-var clientId = '620854073277-21qpvpu2sk8k0fb0llvvfcjm8c7o876d.apps.googleusercontent.com';
-var apiKey = 'AIzaSyD4REk101IKAOV0bCRU2ZqLttWDmCdgBmA';
-// var clientId = '620854073277-qhsnd3l79nkoh8emfkmhce81pp0f6eti.apps.googleusercontent.com';
-// var apiKey = 'AIzaSyAoFEVwvxeLEZS2sOnckHU2zBPRYPgA-gA';
+// var clientId = '620854073277-21qpvpu2sk8k0fb0llvvfcjm8c7o876d.apps.googleusercontent.com';
+// var apiKey = 'AIzaSyD4REk101IKAOV0bCRU2ZqLttWDmCdgBmA';
+var clientId = '620854073277-qhsnd3l79nkoh8emfkmhce81pp0f6eti.apps.googleusercontent.com';
+var apiKey = 'AIzaSyAoFEVwvxeLEZS2sOnckHU2zBPRYPgA-gA';
 var scopes = 'https://www.googleapis.com/auth/fusiontables';
 
 var table     = $('#table-striped tbody'),
@@ -30,6 +30,7 @@ var table     = $('#table-striped tbody'),
     XuatKho   = $('#btn-xuatkho'),
     addPhieu  = $('#btn-taophieumoi'),
     btnLefts  = $('.sidebar'),
+    Oclock    = $('.my-date'),
     loading   = $('.loading');
 
 // login to pass authorization
@@ -67,17 +68,12 @@ function auth(immediate) {
 /* ------------------------------------------------------------*/
 //		Events Handling
 /* ------------------------------------------------------------*/
-var myDate = new Date();
-var dd = myDate.getDate();
-var mm = myDate.getMonth() + 1; //January is 0!
-var yyyy = myDate.getFullYear();
-$('.my-date').html(dd + ' - ' + mm + ' - ' + yyyy);
 
 // Upload image
 var logo = $('.logo-company'),
     file = $('#file');
 logo.hover(function(){
-  file.toggleClass('upload-file-on').toggleClass('upload-file-off');
+  //file.toggleClass('upload-file-on').toggleClass('upload-file-off');
 });
 
 function PreviewImage() {
@@ -114,10 +110,10 @@ function btnClick(t) {
 }
 
 addPhieu.click(function() {
-  var id = table.find('tr:first').attr('data-id');
+  var row = table.find('tr:first');
 
-  if(id != null && id != "") {
-    var SCT = id.split('-');
+  if(row != null) {
+    var SCT = $(row).attr('data-id').split('-');
     window.location.href = "nhapkho.html?SCT=" + SCT[2];
   }
   else window.location.href = "nhapkho.html?SCT=000";
@@ -229,13 +225,13 @@ function runClientRequest(request, callback) {
 function time() {
    var today = new Date();
    var weekday=new Array(7);
-   weekday[0]="Chủ nhật";
-   weekday[1]="Thứ hai";
-   weekday[2]="Thứ ba";
-   weekday[3]="Thứ tư";
-   weekday[4]="Thứ năm";
-   weekday[5]="Thứ sáu";
-   weekday[6]="Thứ bảy";
+   weekday[0]="Chủ Nhật";
+   weekday[1]="Thứ Hai";
+   weekday[2]="Thứ Ba";
+   weekday[3]="Thứ Tư";
+   weekday[4]="Thứ Năm";
+   weekday[5]="Thứ Sáu";
+   weekday[6]="Thứ Bảy";
    var day = weekday[today.getDay()]; 
    var dd = today.getDate();
    var mm = today.getMonth()+1; //January is 0!
@@ -246,11 +242,13 @@ function time() {
    m=checkTime(m);
    s=checkTime(s);
    nowTime = h+":"+m+":"+s;
-   if(dd<10){dd='0'+dd} if(mm<10){mm='0'+mm} today = day+'<br> '+ dd+'/'+mm+'/'+yyyy;
+   if(dd<10){dd='0'+dd} if(mm<10){mm='0'+mm} today = day+', '+ dd+'/'+mm+'/'+yyyy;
 
-   tmp='<span class="date">'+today+' <br> '+nowTime+'</span>';
+   tmp='<span class="date">'+today+' '+nowTime+'</span>';
 
-   document.getElementById("clock").innerHTML=tmp;
+   //document.getElementById("clock").innerHTML=tmp;
+   Oclock.html(tmp);
+   //console.log(tmp);
 
    clocktime=setTimeout("time()","1000","JavaScript");
    function checkTime(i)
@@ -261,3 +259,5 @@ function time() {
       return i;
    }
 }
+
+time();

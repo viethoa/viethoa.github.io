@@ -3,10 +3,10 @@
 /* ------------------------------------------------------------*/
 var ChungTu_tableId = '1Ed8oQjlUZu3taYzbjEhUePlr6Y-7WJnLoazC8Th1';
 var Coc_tableId = '16S5xV2WhuOzYyr4oNtPuOcq1M2eOkE-JqkwRfXuc';
-var clientId = '620854073277-21qpvpu2sk8k0fb0llvvfcjm8c7o876d.apps.googleusercontent.com';
-var apiKey = 'AIzaSyD4REk101IKAOV0bCRU2ZqLttWDmCdgBmA';
-// var clientId = '620854073277-qhsnd3l79nkoh8emfkmhce81pp0f6eti.apps.googleusercontent.com';
-// var apiKey = 'AIzaSyAoFEVwvxeLEZS2sOnckHU2zBPRYPgA-gA';
+// var clientId = '620854073277-21qpvpu2sk8k0fb0llvvfcjm8c7o876d.apps.googleusercontent.com';
+// var apiKey = 'AIzaSyD4REk101IKAOV0bCRU2ZqLttWDmCdgBmA';
+var clientId = '620854073277-qhsnd3l79nkoh8emfkmhce81pp0f6eti.apps.googleusercontent.com';
+var apiKey = 'AIzaSyAoFEVwvxeLEZS2sOnckHU2zBPRYPgA-gA';
 var scopes = 'https://www.googleapis.com/auth/fusiontables';
 
 // login to pass authorization
@@ -36,6 +36,11 @@ function auth(immediate) {
 }
 
 
+// set current date for datetime picker
+$('.mydate').data('datetimepicker').setDate((new Date).getTime());
+$('td.mydate').data('datetimepicker').setDate((new Date).getTime());
+
+
 /* ------------------------------------------------------------*/
 //		Auto add row when call event enter
 /* ------------------------------------------------------------*/
@@ -45,39 +50,72 @@ var table = $('#table-striped tbody'),
 
 $('#table-striped').on('keypress', '.enterfill', function(e) {
 	if(e.which == 13) {
-		content.STT++;
+		//Seccion to checkIn value of this
+		var val = $(this).val(),
+				first = val.substring(0,3);
+		//console.log(val, first);
 
-		// remove class enterfill
-		$(this).toggleClass('enterfill');
+		if(val.length > 8 || first != "14.") {
+			alert('Nhập liệu không đúng !!');
+		} 
+		else { // Seccion fo auto add row + focus next input
+			
+			content.STT++;
 
-		// get template row
-		var row = $("#row-template").html();
-		var template = Handlebars.compile(row);
-		// add pend row into table
-		table.append(template(content));
+			// remove class enterfill
+			$(this).toggleClass('enterfill');
 
-		// activation datetime picker
-		table.find('.mydate:last').datetimepicker({
-      format: 'dd/MM/yyyy'
-    }).data('datetimepicker').setDate((new Date).getTime());
+			// get template row
+			var row = $("#row-template").html();
+			var template = Handlebars.compile(row);
+			// add pend row into table
+			table.append(template(content));
 
-		// change focus
-		table.find('.enterfill').focus().val();
+			// activation datetime picker
+			table.find('.mydate:last').datetimepicker({
+	      format: 'dd/MM/yyyy'
+	    }).data('datetimepicker').setDate((new Date).getTime());
 
-		// change sum row
-		sum.html('Tổng: ' + content.STT + ' cọc');
+			// change focus
+			table.find('.enterfill').focus().val();
+
+			// change sum row
+			sum.html('Tổng: ' + content.STT + ' cọc');
+		}
 	}
 });
+
+
+/* ------------------------------------------------------------*/
+//		Focus next input.cd-enter-fill + CheckIn value
+/* ------------------------------------------------------------*/
+$('#table-striped').on('keypress', '.cd-enter-fill', function(e) {
+	if(e.which == 13) {
+
+		// Seccion to check value
+		var val = $(this).val();
+		if(val.length == 0 || parseInt(val) > 99) {
+			alert('Nhập liệu không đúng !!');
+		}
+		else {
+
+			// Seccion to focus
+			var row = $(this).closest('tr'),
+					next = $(row).next();
+			
+			if(next.length == 1) {
+				$(next).find('.cd-enter-fill').focus();
+			}
+		}
+	}
+});
+
 
 // Delete a row on Table Event Handle
 $('#table-striped').on('click', '.delete', function() {
 	$(this).parent().parent().remove();
 })
 
-
-// set current date for datetime picker
-$('.mydate').data('datetimepicker').setDate((new Date).getTime());
-$('td.mydate').data('datetimepicker').setDate((new Date).getTime());
 
 
 /* ------------------------------------------------------------*/
@@ -264,5 +302,4 @@ function runClientRequest(request, callback) {
   var restRequest = gapi.client.request(request);
   restRequest.execute(callback);
 }
-
 

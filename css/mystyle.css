@@ -45,7 +45,7 @@ body { margin: auto; width: 1000px;}
 .content-above {
 	border-bottom: 1px solid #ccc;
 	padding-bottom: 15px;
-	margin-top: 85px;
+	margin-top: 35px;
 }
 .my-date {
 	font-size: 2.1rem;
@@ -180,6 +180,9 @@ h1 {
 .label-error{
 	background-color: #d9534f;
 	display: none;
+}
+.table-striped .col-chieudai{
+	width: 30%;
 }
 
 footer {
