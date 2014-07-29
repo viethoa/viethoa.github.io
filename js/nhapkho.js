@@ -4,10 +4,10 @@
 var ChungTu_tableId = '1Ed8oQjlUZu3taYzbjEhUePlr6Y-7WJnLoazC8Th1';
 var Coc_tableId = '16S5xV2WhuOzYyr4oNtPuOcq1M2eOkE-JqkwRfXuc';
 var HeThongId = '1TRG3TqHDWKekCK7stxR_yRfp7y23PBvYzJnrssOj';
-var clientId = '620854073277-21qpvpu2sk8k0fb0llvvfcjm8c7o876d.apps.googleusercontent.com';
-var apiKey = 'AIzaSyD4REk101IKAOV0bCRU2ZqLttWDmCdgBmA';
-// var clientId = '620854073277-qhsnd3l79nkoh8emfkmhce81pp0f6eti.apps.googleusercontent.com';
-// var apiKey = 'AIzaSyAoFEVwvxeLEZS2sOnckHU2zBPRYPgA-gA';
+// var clientId = '620854073277-21qpvpu2sk8k0fb0llvvfcjm8c7o876d.apps.googleusercontent.com';
+// var apiKey = 'AIzaSyD4REk101IKAOV0bCRU2ZqLttWDmCdgBmA';
+var clientId = '620854073277-qhsnd3l79nkoh8emfkmhce81pp0f6eti.apps.googleusercontent.com';
+var apiKey = 'AIzaSyAoFEVwvxeLEZS2sOnckHU2zBPRYPgA-gA';
 var scopes = 'https://www.googleapis.com/auth/fusiontables';
 
 // login to pass authorization
@@ -145,7 +145,6 @@ var sochungtu 	= $('#sochungtu'),
 		mathietke 	= $('#mathietke'),
 		InsertData 	= $('#InsertData'),
 		loading 		= $('.loading'),
-		countSend 	= 0,
 		countRes		= 0,
 		flag				= false;
 
@@ -163,8 +162,7 @@ sochungtu.val(SCT);
 
 function initNhapKho() {
 	content.STT = 1;
-	countSend 	= 0;
-	countRes		= 0
+	countRes		= 0;
 	flag				= false;
 	
 	sum.html('Tổng: ' + content.STT + ' cọc');
@@ -274,6 +272,7 @@ function InsertCocChungTus(rowId) {
 	flag = true;
 }
 
+
 function InsertCocChungTu(row, rowId) {
 	var inputs = $(row).find('td>input');
 
@@ -290,7 +289,6 @@ function InsertCocChungTu(row, rowId) {
 		insert.push("'"+ rowId +"',");
 		insert.push("0 )");
 
-		countSend++;
 		query(insert.join(''), "CocChungTu");
 	}
 }
@@ -304,7 +302,6 @@ function query(query, call) {
 
   var callback = function() {
     return function(resp) {
-    	console.log(resp);
 
     	if(call === "ChungTu") {
     		var rowChungTuID = resp.rows[0][0];
@@ -317,7 +314,7 @@ function query(query, call) {
 	      countRes++;
 
 	      // finish Insert
-	      if((countSend) == countRes && flag === true) {
+	      if(content.STT == countRes && flag === true) {
 
 	      	loading.fadeOut(300);
 	      	InsertData.attr("disabled", false);
