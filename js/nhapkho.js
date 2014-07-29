@@ -205,7 +205,7 @@ InsertData.click( function() {
 						first  		= msc.substring(0,3);
 
 				// MSC và ChieuDai == "" => Khong bao loi, nhung k insert
-				if(msc == "" && chieudai == "")
+				if(msc == "" && chieudai == "" && content.STT > 0)
 					content.STT -= 1;
 
 				else  {

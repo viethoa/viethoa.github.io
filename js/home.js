@@ -138,7 +138,16 @@ addPhieu.click(function() {
   else {
     var item  = data[data.length - 1]; 
     var SCT   = item.SoChungTu.split('-');
-    window.location.href = "nhapkho.html?SCT=" + SCT[2];
+    var max = parseFloat(SCT[2]);
+
+    $.each(data, function(index, value){
+      SCT = value.SoChungTu.split('-');
+      var temp = parseFloat(SCT[2]);
+
+      if(max < temp) max = temp;
+    });
+    
+    window.location.href = "nhapkho.html?SCT=" + max;
   }
 });
 
