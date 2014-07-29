@@ -220,14 +220,16 @@ InsertData.click( function() {
 		});
 
 		// Insert data 
-		if (flag == false && content.STT != 0) {			
+		if (flag == false && content.STT != 0) {	
 			$(this).attr("disabled", true);
 			loading.fadeIn(300);
 			// insert table: Chứng Tù
 			InsertChungTung();
 		}
-		else
+		else {
+			content.STT == 1;
 			alert('Nhập liệu không đúng !!');
+		}
 	}
 });
 
