@@ -1,199 +1,698 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-	<meta charset="UTF-8" />
-	<title>Home</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Resume of Viet-Hoa Khuat</title>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @import url(//fonts.googleapis.com/css?family=Open+Sans:400,600,700,800);
+    @charset "utf-8";
+    @-webkit-viewport   { width: device-width; }
+    @-moz-viewport      { width: device-width; }
+    @-ms-viewport       { width: device-width; }
+    @-o-viewport        { width: device-width; }
+    @viewport           { width: device-width; }
 
-	<!-- bootstrap css -->
-	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    body{
+      font-family: 'Open Sans', Arial, Tahoma;
+      font-weight: 400;
+      color: #363636;
+      background: #334960;
+    }
+    blockquote {
+      font-size: 1em;
+    }
 
-	<!-- my css -->
-	<link rel="stylesheet" href="css/mystyle.css">
+    .container{
+      margin-top: 80px;
+      margin-bottom: 15px;
+      background: #fff;
+    }
 
-	<!-- script -->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-	<script src="js/handlebars-v1.3.0.js"></script>
+    #photo-header{
+      margin-top: -75px;
+    }
+    #photo{
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      overflow: hidden;
+      padding: 5px;
+      background: #334960;
+      display: inline-block;
+    }
+    #photo img{
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+    }
+    #text-header h1{
+      margin: 0;
+      padding: 0;
+      font-size: 1.5em;
+      font-weight: 700;
+      letter-spacing: -1px;
+    }
+    #text-header h1::first-line{
+      font-size: 1.5em;
+      font-weight: 800;
+      line-height: 1.5em;
+    }
+    #text-header h1 span{
+      color: #334960;
+      opacity: 0.7;
+    }
+    #text-header h1 sup{
+      opacity: 0.5;
+    }
+    #text-header:after{
+      width: 100%;
+      height: 3px;
+      border-bottom: 1px solid #ddd;
+      margin-top: 15px;
+      content: '';
+      display: block;
+    }
+
+    .box{
+      padding-bottom: 10px;
+      margin-bottom: 25px;
+    }
+    .box h2{
+      color: #227c74;
+      font-size: 1.5em;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    #awards,
+    #education{
+      margin-top: 20px;
+      margin-bottom: 0;
+      position: relative;
+      padding: 1em 0;
+      list-style: none;
+    }
+    #awards:before,
+    #education:before {
+      width: 5px;
+      height: 100%;
+      position: absolute;
+      left: 35px;
+      top: 0;
+      content: ' ';
+      display: block;
+      background: #32475c;
+      background: -moz-linear-gradient(top,  #ffffff 0%, #32475c 7%, #32475c 89%, #ffffff 100%);
+      background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(7%,#32475c), color-stop(89%,#32475c), color-stop(100%,#ffffff));
+      background: -webkit-linear-gradient(top,  #ffffff 0%,#32475c 7%,#32475c 89%,#ffffff 100%);
+      background: -o-linear-gradient(top,  #ffffff 0%,#32475c 7%,#32475c 89%,#ffffff 100%);
+      background: -ms-linear-gradient(top,  #ffffff 0%,#32475c 7%,#32475c 89%,#ffffff 100%);
+      background: linear-gradient(to bottom,  #ffffff 0%,#32475c 7%,#32475c 89%,#ffffff 100%);
+      filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ffffff',GradientType=0 );
+    }
+    #awards li,
+    #education li{
+      width: 100%;
+      z-index: 2;
+      position: relative;
+      float: left;
+    }
+    #awards .year,
+    #education .year{
+      width: 14%;
+      background: #fff;
+      padding: 10px;
+      font-weight: 700;
+      display: inline-block;
+    }
+    #awards .description,
+    #education .description{
+      width: 83%;
+      display: inline-block;
+      background: #eee;
+      margin-bottom: 10px;
+      position: relative;
+      padding: 10px;
+      border-bottom: 1px solid #ccc;
+      border-right: 1px solid #ccc;
+    }
+    #awards .description:after,
+    #education .description:after {
+      content: '';
+      position: absolute;
+      top: 15px;
+      right: 0;
+      left: -16px;
+      height: 0;
+      width: 0;
+      border: solid transparent;
+      border-right-color: #eee;
+      border-width: 8px;
+      pointer-events: none;
+    }
+    #awards .description h3,
+    #education .description h3{
+      font-size: 1.2em;
+      margin: 0;
+      padding: 0;
+      font-weight: 700;
+    }
+    #awards .description p,
+    #education .description p{
+      margin-top: 5px;
+      padding: 0;
+    }
+
+    .job{
+      margin-bottom: 15px;
+    }
+    .job .details {
+      margin-left: 3%;
+      width: 95%;
+      padding: 10px;
+      margin-bottom: 10px;
+      background: #eee;
+      border-bottom: 1px solid #ccc;
+      border-right: 1px solid #ccc;
+    }
+    .job .where{
+      font-size: 1.2em;
+      font-weight: bold;
+    }
+    .job .year{
+      opacity: 0.7;
+    }
+    .job .profession{
+      font-size: 1.2em;
+      font-weight: bold;
+    }
+    .job .description{
+      line-height: 1.5em;
+    }
+    .job .highlights{
+      padding: 5px 0;
+      font-weight: bold;
+    }
+    .job .job-details {
+      padding-left: 5%;
+      width: 100%;
+    }
+    .publication {
+      margin-bottom: 0;
+    }
+    .publication .name{
+      font-size: 1em;
+      font-weight: bold;
+    }
+    .publication .year{
+      opacity: 0.7;
+    }
+    .publication p{
+      margin: 0;
+      padding-top: 10px;
+    }
+
+    .contact-item{
+      width: 100%;
+      float: left;
+    }
+    .contact-item .icon{
+      padding: 10px;
+      border-right: 1px solid #ccc;
+      border-bottom: 1px solid #ccc;
+      color: #32475c;
+      background: #eee;
+    }
+    .contact-item:last-child .icon{
+      border-bottom: none;
+    }
+    .contact-item .title{
+      width: 80%;
+      width: calc(100% - 55px);
+      font-weight: 700;
+      opacity: 0.9;
+    }
+    .contact-item .title.only{
+      margin-top: 10px;
+    }
+    .contact-item .description{
+      width: 80%;
+      width: calc(100% - 55px);
+      color: #334960;
+    }
+
+    .item-interests,
+    .item-skills{
+      height: 30px;
+      color: #334960;
+      padding: 5px 10px;
+      margin-bottom: 5px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      font-size: 1.1em;
+      font-weight: 600;
+    }
+    .interest,
+    .skill{
+      color: #fff;
+      display: inline-block;
+      margin-right: 5px;
+      margin-bottom: 5px;
+      padding: 5px 10px;
+      background: #32475c;
+      position: relative;
+      font-size: .85em;
+    }
+    .skill-level {
+      background-color: #227c74;
+      border-radius: 4px;
+      color: #fff;
+      padding: 1px 8px;
+      font-size: .75em;
+      position: absolute;
+      margin: 1px 10px;
+    }
+
+    #language-skills .skill{
+      margin: 10px 0;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #eee;
+    }
+
+  </style>
+  <style type="text/css" media="print">
+    body {
+      font-size: .95em;
+      -webkit-print-color-adjust: exact;
+    }
+
+    a[href]:after {
+      content: none !important;
+    }
+
+    #photo{
+      display: none;
+    }
+
+    .box {
+      margin-bottom: -10px;
+    }
+    .col-sm-5{
+      width: 40%;
+      padding: 0 15px;
+    }
+
+    .col-sm-7{
+      width: 60%;
+      padding: 0 15px;
+    }
+
+    .skills .col-sm-offset-1,
+    .interests .col-sm-offset-1{
+      margin-top: -10px;
+      margin-bottom: 5px;
+    }
+
+    #education {
+      margin: 0;
+      margin-bottom: -20px;
+    }
+    #awards:before,
+    #education:before {
+      background: none;
+    }
+
+    #awards .description,
+    #education .description,
+    .job .details {
+      border: 1px solid #eee;
+    }
+    .publication,
+    .publication .panel-heading,
+    .publication .name{
+      margin: 0;
+      padding: 0 5px;
+      border: none;
+    }
+    .publication .panel-body {
+      padding: 0 10px;
+      margin: 0;
+    }
+
+    .badge {
+      margin: 0;
+    }
+
+    .list-group-item{
+      border: none;
+      margin: 0;
+      padding: 5px 15px;
+    }
+    .list-group-item:after{
+      content: '';
+      position: absolute;
+      top: 8px;
+      right: 0;
+      left: -1px;
+      height: 0;
+      width: 0;
+      border: solid transparent;
+      border-right-color: #999;
+      border-width: 4px;
+      pointer-events: none;
+    }
+  </style>
 </head>
-
 <body>
-	<div class="row row-header">
-		<div class="col-md-2 logo-company">
-			<a href="/">
-				<img id="imgUploadProfile" src="images/logo/logo.jpg">
-				<div id="file" class="upload-file-on"><input id="fileUpload" onchange="PreviewImage();" name="file" type="file" accept="image/*" class="form-control"></div>
-			</a>
-		</div>
-		<div class="col-md-8 header-content">
-			<h1>TIÊN PHONG - INVEW - ONL</h1>
-			<h1>VER - BETA - 101</h1>
-		</div>
-		<div id="my-user" class="col-md-2 user-logged">
-			<div id="logo-user"></div>
-			<!-- <img src="images/user.png"> -->
-			<span class="user-name">Your Name</span>
-		</div>
-	</div>
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <div id="photo-header" class="text-center">
+          <!-- PHOTO (AVATAR) -->
+          <div id="photo">
+            <img src="images/me.jpg" alt="avatar">
+          </div>
+          <div id="text-header" >
+            <h1>Viet-Hoa Khuat<br><span>Senior Android Developer</span></h1>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12 col-sm-7">
+        <!-- ABOUT ME -->
+        <div class="box">
+          <h2><i class="fa fa-user ico"></i> About</h2>
+          <p>I was born in a poor rural area of Binh Phuoc province. After high school, it took me a lot of time to find what I want to do and what I belongs to. Now I choose to become a good engineer as my life purpose. To become a good engineer, I know nobody can’t help me, nobody can’t do it for me, I need to do by myself and.. no one can stop me. I start developing projects with heart, applying information technology to help people solve real life problems to be more successful.</p>
+        </div>
+        <!-- WORK EXPERIENCE -->
+        <div class="box">
+          <h2><i class= "fa fa-suitcase ico"></i> Work Experience</h2>
+          <div class="job clearfix">
+            <div class="row">
+              <div class="details">
+                <div class="where">Silicon Straits SaiGon</div>
+                <div class="address">
+                  <a href="http:&#x2F;&#x2F;siliconstraits.com&#x2F;" target= "_blank"><i class="fa fa-globe ico"></i> http:&#x2F;&#x2F;siliconstraits.com&#x2F;</a>
+                </div>
+                <div class="year">September 2015 – June 2016</div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="job-details col-xs-11">
+                <div class="profession">Senior Android Developer</div>
+                <div class="description">
+                  <p>
+                    Responsible for:<br/>
+                    Develop, customize and optimize performance for all Android devices. Develop Android apps, training junior developers.
+                  </p>
+                  <p>
+                    Skills gained for now: <br/>
+                    Strong accomplished Android development experience. Working under hard pressure. Get familiar with agile development. Get acquainted with some new technologies such as rxJava and rxAndroid.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="job clearfix">
+            <div class="row">
+              <div class="details">
+                <div class="where">Originally.US</div>
+                <div class="address">
+                  <a href="https:&#x2F;&#x2F;originallyus.sg" target= "_blank"><i class="fa fa-globe ico"></i> https:&#x2F;&#x2F;originallyus.sg</a>
+                </div>
+                <div class="year">August 2014 – September 2015</div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="job-details col-xs-11">
+                <div class="profession">Android Developer</div>
+                <div class="description">
+                  <p>
+                    Responsible for: <br/>
+                    Develop Android apps, maintain, fix bugs. Planning and seeking solutions for projects.
+                  </p>
+                  <p>
+                    Skills gained: <br/>
+                    Here I was honing my Android skills. That are not only beautiful but also have quality and well-architected code base. Object-oriented programming (OOP).
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="job clearfix">
+            <div class="row">
+              <div class="details">
+                <div class="where">Originally.US</div>
+                <div class="address">
+                  <a href="https:&#x2F;&#x2F;originallyus.sg" target= "_blank"><i class="fa fa-globe ico"></i> https:&#x2F;&#x2F;originallyus.sg</a>
+                </div>
+                <div class="year">August 2014 – September 2015</div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="job-details col-xs-11">
+                <div class="profession">Web front-end developer</div>
+                <div class="description">
+                  Building Web Applications with some of cutting-edge technologies such as Meteor and Ember, Angular.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- PROJECTS -->
+        <div class="box">
+          <h2><i class="fa fa-building ico"></i> PROJECTS</h2>
+          <div class="publication panel panel-default">
+            <div class="panel-heading">
+              <div class="name panel-title">My Blue Bird</div>
+            </div>
+            <div class="panel-body">
+              <div class="year">  </div>
+              <div class="address">
+                <a href="https://play.google.com/store/apps/details?id=com.seatech.bluebird" target= "_blank"><i class="fa fa-globe ico"></i>  https://play.google.com/store/apps/details?id=com.seatech.bluebird</a>
+              </div>
+            </div>
+          </div>
+          <div class="publication panel panel-default">
+            <div class="panel-heading">
+              <div class="name panel-title">SG BusLeh: With Bus Locations!</div>
+            </div>
+            <div class="panel-body">
+              <div class="year">  </div>
+              <div class="address">
+                <a href="https://play.google.com/store/apps/details?id=originally.us.buses" target= "_blank"><i class="fa fa-globe ico"></i>  https://play.google.com/store/apps/details?id=originally.us.buses</a>
+              </div>
+            </div>
+          </div>
+          <div class="publication panel panel-default">
+            <div class="panel-heading">
+              <div class="name panel-title">Pay It Forward</div>
+            </div>
+            <div class="panel-body">
+              <div class="year">  </div>
+              <div class="address">
+                <a href="https://play.google.com/store/apps/details?id=com.dotsconnecting.payitforward" target= "_blank"><i class="fa fa-globe ico"></i>  https://play.google.com/store/apps/details?id=com.dotsconnecting.payitforward</a>
+              </div>
+            </div>
+          </div>
+          <div class="publication panel panel-default">
+            <div class="panel-heading">
+              <div class="name panel-title">My Delivery</div>
+            </div>
+            <div class="panel-body">
+              <div class="year">  </div>
+              <div class="address">
+                <a href="https://play.google.com/store/apps/details?id=mydelivery.shippin.com.mydelivery" target= "_blank"><i class="fa fa-globe ico"></i>  https://play.google.com/store/apps/details?id=mydelivery.shippin.com.mydelivery</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- PUBLICATIONS -->
+        <div class="box">
+          <h2><i class="fa fa-book ico"></i> Publications</h2>
+          <div class="publication panel panel-default">
+            <div class="panel-heading">
+              <div class="name panel-title">Create library module in Android Studio</div>
+            </div>
+            <div class="panel-body">
+              <div class="year">  </div>
+              <div class="address">
+                <a href=" https:&#x2F;&#x2F;googledrive.com&#x2F;host&#x2F;0BxXqubIuadYEd3VVbnF4ajFIR0E&#x2F;html-blog&#x2F;create-android-library.html" target= "_blank"><i class="fa fa-globe ico"></i>  https:&#x2F;&#x2F;googledrive.com&#x2F;host&#x2F;0BxXqubIuadYEd3VVbnF4ajFIR0E&#x2F;html-blog&#x2F;create-android-library.html</a>
+              </div>
+            </div>
+          </div>
+          <div class="publication panel panel-default">
+            <div class="panel-heading">
+              <div class="name panel-title">Publish Android Library to Maven using gradle</div>
+            </div>
+            <div class="panel-body">
+              <div class="year">  </div>
+              <div class="address">
+                <a href="https:&#x2F;&#x2F;7090dcc06ea67ac50bc1df91e119538985e47738.googledrive.com&#x2F;host&#x2F;0BxXqubIuadYEd3VVbnF4ajFIR0E&#x2F;html-blog&#x2F;publish-android-library.html" target= "_blank"><i class="fa fa-globe ico"></i> https://googledrive.com/host/0BxXqubIuadYEd3VVbnF4ajFIR0E/html-blog/publish-android-library.html</a>
+              </div>
+            </div>
+          </div>
+          <div class="publication panel panel-default">
+            <div class="panel-heading">
+              <div class="name panel-title">Material SnackBar For Android</div>
+            </div>
+            <div class="panel-body">
+              <div class="year">  </div>
+              <div class="address">
+                <a href="https:&#x2F;&#x2F;github.com&#x2F;viethoa&#x2F;material-snackbar-android" target= "_blank"><i class="fa fa-globe ico"></i> https:&#x2F;&#x2F;github.com&#x2F;viethoa&#x2F;material-snackbar-android</a>
+              </div>
+            </div>
+          </div>
+          <div class="publication panel panel-default">
+            <div class="panel-heading">
+              <div class="name panel-title">Fast scroller alphabet for Android</div>
+            </div>
+            <div class="panel-body">
+              <div class="year">  </div>
+              <div class="address">
+                <a href="https:&#x2F;&#x2F;github.com&#x2F;viethoa&#x2F;fast-scroller-alphabet-android" target= "_blank"><i class="fa fa-globe ico"></i> https:&#x2F;&#x2F;github.com&#x2F;viethoa&#x2F;fast-scroller-alphabet-android</a>
+              </div>
+            </div>
+          </div>
+          <div class="publication panel panel-default">
+            <div class="panel-heading">
+              <div class="name panel-title">Flickr photo manager for Android</div>
+            </div>
+            <div class="panel-body">
+              <div class="year">  </div>
+              <div class="address">
+                <a href="https:&#x2F;&#x2F;github.com&#x2F;viethoa&#x2F;flickr-photo-manager-android" target= "_blank"><i class="fa fa-globe ico"></i> https:&#x2F;&#x2F;github.com&#x2F;viethoa&#x2F;flickr-photo-manager-android</a>
+              </div>
+            </div>
+          </div>
+          <div class="publication panel panel-default">
+            <div class="panel-heading">
+              <div class="name panel-title">Android MVVM RxJava Demo</div>
+            </div>
+            <div class="panel-body">
+              <div class="year">  </div>
+              <div class="address">
+                <a href="https:&#x2F;&#x2F;github.com&#x2F;viethoa&#x2F;android-mvvm-rxjava-demo" target= "_blank"><i class="fa fa-globe ico"></i> https:&#x2F;&#x2F;github.com&#x2F;viethoa&#x2F;android-mvvm-rxjava-demo</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xs-12 col-sm-5">
+        <!-- CONTACT -->
+        <div class="box clearfix">
+          <h2><i class="fa fa-bullseye ico"></i> Contact</h2>
+          <div class="contact-item">
+            <div class="icon pull-left text-center"><span class="fa fa-map-marker fa-fw"></span></div>
 
-	<!-- <p class="oclock"><embed height="100" width="100" src="http://static.quantrimang.com.vn/photos/Flash/Flash2009/03/clock.swf" type="application/x-shockwave-flash" play="true" loop="true" menu="true"></p> -->
-	
+            <div class="title only  pull-right">Ho Chi Minh - Viet Nam</div>
+          </div>
+          <div class="contact-item">
+            <div class="icon pull-left text-center"><span class="fa fa-phone fa-fw"></span></div>
+            <div class="title only pull-right">(+84) 1286848384</div>
+          </div>
+          <div class="contact-item">
+            <div class="icon pull-left text-center"><span class="fa fa-envelope fa-fw"></span></div>
+            <div class="title only pull-right"><a href="mailto:hoa.khuatviet@gmail.com" target="_blank">hoa.khuatviet@gmail.com</a></div>
+          </div>
+          <div class="contact-item">
+            <div class="icon pull-left text-center"><span class="fa fa-twitter-square fa-fw"></span></div>
+            <div class="title pull-right">Twitter</div>
+            <div class="description pull-right"><a href="https:&#x2F;&#x2F;twitter.com&#x2F;khuatviethoa" target="_blank">khuatviethoa</a></div>
+          </div>
+          <div class="contact-item">
+            <div class="icon pull-left text-center"><span class="fa fa-github-square fa-fw"></span></div>
+            <div class="title pull-right">Github</div>
+            <div class="description pull-right"><a href="https:&#x2F;&#x2F;github.com&#x2F;viethoa" target="_blank">viethoa</a></div>
+          </div>
+          <div class="contact-item">
+            <div class="icon pull-left text-center"><span class="fa fa-linkedin-square fa-fw"></span></div>
+            <div class="title pull-right">LinkedIn</div>
+            <div class="description pull-right"><a href="https:&#x2F;&#x2F;vn.linkedin.com&#x2F;in&#x2F;viethoa" target="_blank">viethoa</a></div>
+          </div>
+          <div class="contact-item">
+            <div class="icon pull-left text-center"><span class="fa fa-facebook-square fa-fw"></span></div>
+            <div class="title pull-right">Facebook</div>
+            <div class="description pull-right"><a href="https:&#x2F;&#x2F;www.facebook.com&#x2F;kustupidbp" target="_blank">kustupidbp</a></div>
+          </div>
+          <div class="contact-item">
+            <div class="icon pull-left text-center"><span class="fa fa-skype fa-fw"></span></div>
+            <div class="title pull-right">Skype</div>
+            <div class="description pull-right"><a href="https:&#x2F;&#x2F;www.skype.com" target="_blank">kustupid</a></div>
+          </div>
+        </div>
+        <!-- EDUCATION -->
+        <div class="box">
+          <h2><i class="fa fa-university ico"></i> Education</h2>
+          <ul id="education" class="clearfix">
+            <li>
+              <div class="year pull-left">2009 2014</div>
+              <div class="description pull-right">
+                <h3>University of Science Ho Chi Minh city</h3>
+                <p><i class= "fa fa-graduation-cap ico"></i> Bachelor&#39;s degree</p>
+                <p>Information Technology</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <!-- SKILLS -->
+        <div class="box">
+          <h2><i class="fa fa-tasks ico"></i> Skills</h2>
+          <div class="skills clearfix">
+            <div class="item-skills">
+              Android Developer
+              <span class="skill-level">Expert</span>
+            </div>
+            <div class="col-sm-offset-1 col-sm-12 clearfix">
+              <span class= "skill badge">Object Oriented Programming</span><br/>
+              <span class= "skill badge">Dagger (dependency injection)</span><br/>
+              <span class= "skill badge">MVP, MVVM</span><br/>
+              <span class= "skill badge">RxAndroid</span><br/>
+              <span class= "skill badge">Material design</span><br/>
+              <span class= "skill badge">Multiple screens size</span><br/>
+              <span class= "skill badge">Performance</span><br/>
+              <span class= "skill badge">Battery</span><br/>
+              <span class= "skill badge">Service</span>
+            </div>
+          </div>
+          <div class="skills clearfix">
+            <div class="item-skills">
+              Web Front-end developer
+              <span class="skill-level">Senior</span>
+            </div>
+            <div class="col-sm-offset-1 col-sm-12 clearfix">
+              <span class= "skill badge">HTML, HTML5</span><br/>
+              <span class= "skill badge">CSS, CSS3, LESS, SASS</span><br/>
+              <span class= "skill badge">Bootstrap, Foundation</span><br/>
+              <span class= "skill badge">JavaScript</span><br/>
+              <span class= "skill badge">Ember</span><br/>
+              <span class= "skill badge">Angular</span><br/>
+              <span class= "skill badge">Meteor</span><br/>
+              <span class= "skill badge">Node Js</span>
+            </div>
+          </div>
+        </div>
+        <!-- LANGUAGES -->
+        <div class="box">
+          <h2><i class="fa fa-language ico"></i> Languages</h2>
+          <ul class="list-group">
+            <li class=" list-group-item">English<span class="skill badge pull-right">intermediate</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- JQUERY -->
+  <script src="//code.jquery.com/jquery-2.1.1.min.js"></script>
+  <!-- BOOTSTRAP -->
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 
-	<div class="row content-above">
-		<div class="col-md-4">		
-			<div class="my-date"></div> <!-- id="clock" -->
-		</div>
-
-		<!-- Nghiệp vụ kho -->		
-		<div class="col-md-3">
-			<div class="btn-group">	
-				<button type="button" class="btn btn-primary">Nghiệp Vụ Kho</button>
-				<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-					<span class="caret"></span>
-					<span class="sr-only">Toggle Dropdown</span>
-				</button>
-				<ul class="dropdown-menu" role="menu">
-					<li><a href="#">Nhập Kho</a></li>
-					<li><a href="#">Xuất Kho</a></li>
-				</ul>
-			</div>
-		</div>
-		
-		<!-- Nghiệp vụ Khac -->
-		<div class="col-md-3">
-			<div class="btn-group">	
-				<button type="button" class="btn btn-warning">Nghiệp Vụ Khác</button>
-				<button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown">
-					<span class="caret"></span>
-					<span class="sr-only">Toggle Dropdown</span>
-				</button>
-				<ul class="dropdown-menu" role="menu">
-					<li><a href="#">Nhập Kho</a></li>
-					<li><a href="#">Xuất Kho</a></li>
-				</ul>
-			</div>
-		</div>
-	</div>
-
-	<div class="row">
-		<div class="col-md-2 left">
-			<ul class="sidebar">
-				<li>
-					<button class="btn btn-primary" id="btn-nhapkho">Nhập Kho</button>
-				</li>
-				<li>
-					<button class="btn btn-default" id="btn-xuatkho">Xuất Kho</button>
-				</li>
-				<li>
-					<button class="btn btn-default">Kiểm Kho</button>
-				</li>
-			</ul>
-		</div>
-		<div class="col-md-10">
-			<h1>Liệt Kê Chứng Từ Nhập Kho</h1>
-			<button id="btn-taophieumoi" class="btn btn-default btn-add-new">Tạo phiếu mới</button>
-			<table class="table table-striped" id="table-striped">
-				<thead>
-					<tr>
-						<th>STT</th>
-						<th>Số chứng từ</th>
-						<th>Ngày chứng từ</th>
-						<th>Mã thiết kế</th>
-						<th>Số lượng</th>
-						<th></th>
-					</tr>
-				</thead>
-				<tbody>
-					<!-- Fill data in here -->
-				</tbody>
-			</table>
-		</div>
-	</div>
-
-	<div class="popup-show-data" style="display:none">
-		<div class="popup-container">
-			<div class="row">
-				<div class="col-md-4 form-group">
-					<label>Số chứng từ</label>
-					<input type="text" class="form-control" value="" disabled="disabled">
-				</div>
-				<div class="col-md-4 form-group">
-					<label>Ngày chứng từ</label>
-					<input type="text" class="form-control" value="" disabled="disabled">
-				</div>
-				<div class="col-md-4 form-group">
-					<label>Mã thiết kế</label>
-					<input type="text" class="form-control" value="" disabled="disabled">
-				</div>
-			</div>
-			
-			<div class="row">
-				<table class="table table-striped" id="popup-table">
-					<thead>
-						<tr>
-							<th>STT</th>
-							<th>MSC</th>
-							<th>Chiều dài</th>
-							<th>Ngày sản xuất</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td>1</td>
-							<td></td>
-							<td></td>
-							<td></td>
-						</tr>
-					</tbody>
-				</table>
-
-				<h3><span class="label label-primary sum">Tổng: 1 cọc</span></h3>
-			</div>
-		</div>
-	</div>
-
-	<div class="loading" style="display:none">
-		<img class="loadingImage" src="images/loading.gif"></div>
-
-	<footer></footer>
-
-	<!-- Row Template for PhieuNhap -->
-	<script id="tbody-template" type="text/x-handlebars-template">
-		{{#each this}}
-	  	<tr data-id="{{this.[1]}}" data-date="{{this.[2]}}">
-				<td>{{math @index "+" 1}}</td>
-				<td>{{this.[1]}}</td>
-				<td>{{this.[2]}}</td>
-				<td>{{this.[3]}}</td>
-				<td>{{this.[4]}}</td>
-				<td>
-					<button data-table="NhapKho" data-id="{{this.[0]}}" class="btn btn-success btn-xs view">
-						view</button>
-					<button data-table="NhapKho" data-id="{{this.[0]}}" class="btn btn-info btn-xs update">
-						update</button>
-				</td>
-			</tr>
-		{{/each}}
-	</script>
-
-	<!-- Row Template for PhieuXuat -->
-	<script id="tbody-template-2" type="text/x-handlebars-template">
-		{{#each this}}
-	  	<tr>
-				<td>{{math @index "+" 1}}</td>
-				<td>{{this.[1]}}</td>
-				<td>{{this.[2]}}</td>
-				<td>{{this.[3]}}</td>
-				<td>{{this.[4]}}</td>
-				<td>
-					<button data-table="XuatKho" data-id="{{this.[0]}}" class="btn btn-success btn-xs view">view</button>
-				</td>
-			</tr>
-		{{/each}}
-	</script>
-
-	<script src="js/home.js"></script>
-	<!-- Call google api client onload = initialize -->
-	<script src="https://apis.google.com/js/client.js?onload=initialize"></script>
-</body>
-</html>
+  <script type="text/javascript">/* <![CDATA[ */(function(d,s,a,i,j,r,l,m,t){try{l=d.getElementsByTagName('a');t=d.createElement('textarea');for(i=0;l.length-i;i++){try{a=l[i].href;s=a.indexOf('/cdn-cgi/l/email-protection');m=a.length;if(a&&s>-1&&m>28){j=28+s;s='';if(j<m){r='0x'+a.substr(j,2)|0;for(j+=2;j<m&&a.charAt(j)!='X';j+=2)s+='%'+('0'+('0x'+a.substr(j,2)^r).toString(16)).slice(-2);j++;s=decodeURIComponent(s)+a.substr(j,m-j)}t.innerHTML=s.replace(/</g,'&lt;').replace(/>/g,'&gt;');l[i].href='mailto:'+t.value}}catch(e){}}}catch(e){}})(document);/* ]]> */</script></body>
+  </html>
