@@ -184,12 +184,13 @@
       font-size: 1.2em;
       font-weight: bold;
     }
-    .job .year{
-      opacity: 0.7;
-    }
     .job .profession{
       font-size: 1.2em;
       font-weight: bold;
+    }
+    .job .year{
+      color: #6d6d6d;
+      font-size: 1em;
     }
     .job .description{
       line-height: 1.5em;
@@ -199,7 +200,7 @@
       font-weight: bold;
     }
     .job .job-details {
-      padding-left: 5%;
+      padding-left: 3%;
       width: 100%;
     }
     .publication {
@@ -371,6 +372,7 @@
 </head>
 <body>
   <div class="container">
+    <!-- Avatar and Name -->
     <div class="row">
       <div class="col-xs-12">
         <div id="photo-header" class="text-center">
@@ -379,225 +381,117 @@
             <img src="images/me.jpg" alt="avatar">
           </div>
           <div id="text-header" >
-            <h1>Viet-Hoa Khuat<br><span>Senior Android Developer</span></h1>
+            <h1>Hoa, Khuat Viet<br><span>Engineer Manager (Android)</span></h1>
           </div>
         </div>
       </div>
     </div>
+    <!-- Skills and Experiences -->
     <div class="row">
-      <div class="col-xs-12 col-sm-7">
-        <!-- ABOUT ME -->
+      <!-- Left section -->
+      <div class="col-xs-12 col-sm-8">
+        <!-- SKILL -->
         <div class="box">
-          <h2><i class="fa fa-user ico"></i> About</h2>
-          <p>I was born in a poor rural area of Binh Phuoc province. After high school, it took me a lot of time to find what I want to do and what I belongs to. Now I choose to become a good engineer as my life purpose. To become a good engineer, I know nobody can’t help me, nobody can’t do it for me, I need to do by myself and.. no one can stop me. I start developing projects with heart, applying information technology to help people solve real life problems to be more successful.</p>
+          <h2><i class="fa fa-user ico"></i> Skills</h2>
+          <div class="row">
+            <div class="job-details col-xs-11">
+              <div class="description">
+                <ul>
+                  <li>7 years experience in Android. Proficient in Kotlin, Java, Android SDK, Rxjava, and Dagger Dependecy Injection.</li>
+                  <li>2 Years as FE developer. Proficient in HTML, CSS, Javascript, Bootstrap, and Foundation.</li>
+                  <li>Experienced in Flutter, Python, NodeJs, and Java Spring.</li>
+                  <li>Leading the team and design the architecture, coordinate with BE to define the flow how FE integrate with BE.</li>
+                  <li>Being a project owner for many projects, also a bridge to sync up requirement between internal team members, external team members, PM, and other stakeholders.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
         </div>
         <!-- WORK EXPERIENCE -->
         <div class="box">
           <h2><i class= "fa fa-suitcase ico"></i> Work Experience</h2>
           <div class="job clearfix">
             <div class="row">
-              <div class="details">
-                <div class="where">Grab</div>
-                <div class="address">
-                  <a href="https://www.grab.com" target= "_blank"><i class="fa fa-globe ico"></i>https://www.grab.com</a>
-                </div>
-                <div class="year">February 2017 – now</div>
-              </div>
-            </div>
-            <div class="row">
               <div class="job-details col-xs-11">
-                <div class="profession">Senior Android Engineer</div>
+                <div class="profession">Engineer Manager (Android) - Grab - Singapore</div>
+                <div class="profession year">February 2021 – now</div>
                 <div class="description">
-                  <p>
-                    Grab is more than just the leading ride-hailing app in Southeast Asia. We use data and technology to improve everything from transportation to payments and logistics across a region of more than 620 million people. Working with governments, drivers, passengers, and charities, we aim to unlock the true potential of the region by solving problems that hinder progress.
-
-                    Grab began as a taxi-hailing app in 2012, but has extended its product platform to include private car services (GrabCar & GrabShare), motorcycle taxis (GrabBike), social carpooling (GrabHitch) and last mile delivery (GrabExpress). We are focused on pioneering new commuting alternatives for drivers and passengers with an emphasis on speed, safety, and reliability. Currently we offer services in Singapore, Indonesia, Philippines, Malaysia, Thailand and Vietnam; however, we also have R&D offices in Bangalore, Beijing, & Seattle.”
-                  </p>
+                  <ul>
+                    <li>Working with different work streams across the company to solve dependency blocker. Working closely with PM to clear requirement, list down technical challenges and define the solution. In charge for project quality and performance.</li>
+                    <li>Manage the team in balance of reasource, running sprint plaining, breaking down the task and define the workload for every team members sprint by sprint. Constantly support and giving feedback, also suggest the area for team member to grow.</li>
+                    <li>Running project sharing session to share knowledge widely betweem the work streams. Target to reduce feature conflict, code conflict and edge cases.</li>
+                    <li>Leading the team in code refactor, modularizing, and restructure to improve app performance and making feature development easier.</li>
+                  </ul>
                 </div>
               </div>
             </div>
           </div>
           <div class="job clearfix">
             <div class="row">
-              <div class="details">
-                <div class="where">Silicon Straits SaiGon</div>
-                <div class="address">
-                  <a href="http:&#x2F;&#x2F;siliconstraits.com&#x2F;" target= "_blank"><i class="fa fa-globe ico"></i> http:&#x2F;&#x2F;siliconstraits.com&#x2F;</a>
-                </div>
-                <div class="year">September 2015 – February 2017</div>
-              </div>
-            </div>
-            <div class="row">
               <div class="job-details col-xs-11">
-                <div class="profession">Senior Android Developer</div>
+                <div class="profession">Senior Android Engineer - Grab - Singapore</div>
+                <div class="profession year">February 2017 – 2021</div>
                 <div class="description">
-                  <p>
-                    Responsible for:<br/>
-                    Develop, customize and optimize performance for all Android devices. Develop Android apps, training junior developers.
-                  </p>
-                  <p>
-                    Skills gained: <br/>
-                    Strong accomplished Android development experience. Working under hard pressure. Get familiar with agile development. Get acquainted with some new technologies such as rxJava and rxAndroid.
-                  </p>
+                  <ul>
+                    <li>Was working on Driver app, Merchant app, and currently working on Passenger app.</li>
+                    <li>Contributed to Grab core booking flow. Implemented Grab Junior project within 2 weeks with a simplest booking flow, which use to replace core booking flow when Grab System has a problem.</li>
+                    <li>Leading mobile Growth team, implement MVP project to get user experiences. Implemented referral project, acquired thousand of users.</li>
+                    <li>Onboarding and mentor for new team members.</li>
+                  </ul>
                 </div>
               </div>
             </div>
           </div>
           <div class="job clearfix">
             <div class="row">
-              <div class="details">
-                <div class="where">Originally.US</div>
-                <div class="address">
-                  <a href="https:&#x2F;&#x2F;originallyus.sg" target= "_blank"><i class="fa fa-globe ico"></i> https:&#x2F;&#x2F;originallyus.sg</a>
-                </div>
-                <div class="year">August 2014 – September 2015</div>
-              </div>
-            </div>
-            <div class="row">
               <div class="job-details col-xs-11">
-                <div class="profession">Android Developer</div>
+                <div class="profession">Senior Android Developer - Silicon Straits SaiGon - VietNam</div>
+                <div class="profession year">September 2015 – February 2017</div>
                 <div class="description">
-                  <p>
-                    Responsible for: <br/>
-                    Develop Android apps, maintain, fix bugs. Planning and seeking solutions for projects.
-                  </p>
-                  <p>
-                    Skills gained: <br/>
-                    Here I was honing my Android skills. That are not only beautiful but also have quality and well-architected code base. Object-oriented programming (OOP).
-                  </p>
+                  <ul>
+                    <li>Implemented architecture for MyBlueBird Passenger app which is a biggest taxi company in Indonesia. Lead and implemented core booking flow for MyBlueBird driver app.</li>
+                    <li>Delivered Pay It Forward project which required a video recording (similar to Instagram), and news feed within 3 months. The news feed has a high performance with video auto playing.</li>
+                    <li>Hiring and training junior enigneers.</li>
+                  </ul>
                 </div>
               </div>
             </div>
           </div>
           <div class="job clearfix">
             <div class="row">
-              <div class="details">
-                <div class="where">Originally.US</div>
-                <div class="address">
-                  <a href="https:&#x2F;&#x2F;originallyus.sg" target= "_blank"><i class="fa fa-globe ico"></i> https:&#x2F;&#x2F;originallyus.sg</a>
+              <div class="job-details col-xs-11">
+                <div class="profession">Android Developer - Originally.US (Singapore Base Company) - VietNam</div>
+                <div class="profession year">August 2014 – September 2015</div>
+                <div class="description">
+                  <ul>
+                    <li>Responsible for develop Android apps, maintain, fix bugs. Planning and seeking for project solution. Implemented SG BusLeh application.</li>
+                    <li>
+                      Skills gained: <br/>
+                      Here I was honing my Android skills, Object-oriented programming (OOP), code quality and well-architected.
+                    </li>
+                  </ul>
                 </div>
-                <div class="year">August 2014 – September 2015</div>
               </div>
             </div>
+          </div>
+          <div class="job clearfix">
             <div class="row">
               <div class="job-details col-xs-11">
-                <div class="profession">Web front-end developer</div>
+                <div class="profession">FE developer - Originally.US (Singapore Base Company) - VietNam</div>
+                <div class="profession year">August 2014 – September 2015</div>
                 <div class="description">
-                  Building Web Applications with some of cutting-edge technologies such as Meteor and Ember, Angular.
+                  <ul>
+                    <li>Implemeted all FE projects of the company, also company portfolio webside at that time.</li>
+                    <li>Applied new FE technology such as Meteor and Ember Js.</li>
+                  </ul>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <!-- PROJECTS -->
-        <div class="box">
-          <h2><i class="fa fa-building ico"></i> Highlight Projects</h2>
-          <div class="publication panel panel-default">
-            <div class="panel-heading">
-              <div class="name panel-title">My Blue Bird</div>
-            </div>
-            <div class="panel-body">
-              <div class="year">  </div>
-              <div class="address">
-                <a href="https://play.google.com/store/apps/details?id=com.seatech.bluebird" target= "_blank"><i class="fa fa-globe ico"></i>  https://play.google.com/store/apps/details?id=com.seatech.bluebird</a>
-              </div>
-            </div>
-          </div>
-          <div class="publication panel panel-default">
-            <div class="panel-heading">
-              <div class="name panel-title">My Bluebird Driver</div>
-            </div>
-            <div class="panel-body">
-              <div class="year">  </div>
-              <div class="address">
-                <a href="https://play.google.com/store/apps/details?id=com.bluebird.driver" target= "_blank"><i class="fa fa-globe ico"></i>  https://play.google.com/store/apps/details?id=com.bluebird.driver</a>
-              </div>
-            </div>
-          </div>
-          <div class="publication panel panel-default">
-            <div class="panel-heading">
-              <div class="name panel-title">SG BusLeh: With Bus Locations!</div>
-            </div>
-            <div class="panel-body">
-              <div class="year">  </div>
-              <div class="address">
-                <a href="https://play.google.com/store/apps/details?id=originally.us.buses" target= "_blank"><i class="fa fa-globe ico"></i>  https://play.google.com/store/apps/details?id=originally.us.buses</a>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- PUBLICATIONS -->
-        <div class="box">
-          <h2><i class="fa fa-book ico"></i> Samll Libraries</h2>
-          <!-- <div class="publication panel panel-default">
-            <div class="panel-heading">
-              <div class="name panel-title">Create library module in Android Studio</div>
-            </div>
-            <div class="panel-body">
-              <div class="year">  </div>
-              <div class="address">
-                <a href=" https:&#x2F;&#x2F;googledrive.com&#x2F;host&#x2F;0BxXqubIuadYEd3VVbnF4ajFIR0E&#x2F;html-blog&#x2F;create-android-library.html" target= "_blank"><i class="fa fa-globe ico"></i>  https:&#x2F;&#x2F;googledrive.com&#x2F;host&#x2F;0BxXqubIuadYEd3VVbnF4ajFIR0E&#x2F;html-blog&#x2F;create-android-library.html</a>
-              </div>
-            </div>
-          </div>
-          <div class="publication panel panel-default">
-            <div class="panel-heading">
-              <div class="name panel-title">Publish Android Library to Maven using gradle</div>
-            </div>
-            <div class="panel-body">
-              <div class="year">  </div>
-              <div class="address">
-                <a href="https:&#x2F;&#x2F;7090dcc06ea67ac50bc1df91e119538985e47738.googledrive.com&#x2F;host&#x2F;0BxXqubIuadYEd3VVbnF4ajFIR0E&#x2F;html-blog&#x2F;publish-android-library.html" target= "_blank"><i class="fa fa-globe ico"></i> https://googledrive.com/host/0BxXqubIuadYEd3VVbnF4ajFIR0E/html-blog/publish-android-library.html</a>
-              </div>
-            </div>
-          </div> -->
-          <div class="publication panel panel-default">
-            <div class="panel-heading">
-              <div class="name panel-title">Material SnackBar For Android</div>
-            </div>
-            <div class="panel-body">
-              <div class="year">  </div>
-              <div class="address">
-                <a href="https:&#x2F;&#x2F;github.com&#x2F;viethoa&#x2F;material-snackbar-android" target= "_blank"><i class="fa fa-globe ico"></i> https:&#x2F;&#x2F;github.com&#x2F;viethoa&#x2F;material-snackbar-android</a>
-              </div>
-            </div>
-          </div>
-          <div class="publication panel panel-default">
-            <div class="panel-heading">
-              <div class="name panel-title">Fast scroller alphabet for Android</div>
-            </div>
-            <div class="panel-body">
-              <div class="year">  </div>
-              <div class="address">
-                <a href="https:&#x2F;&#x2F;github.com&#x2F;viethoa&#x2F;fast-scroller-alphabet-android" target= "_blank"><i class="fa fa-globe ico"></i> https:&#x2F;&#x2F;github.com&#x2F;viethoa&#x2F;fast-scroller-alphabet-android</a>
-              </div>
-            </div>
-          </div>
-          <div class="publication panel panel-default">
-            <div class="panel-heading">
-              <div class="name panel-title">Flickr photo manager for Android</div>
-            </div>
-            <div class="panel-body">
-              <div class="year">  </div>
-              <div class="address">
-                <a href="https:&#x2F;&#x2F;github.com&#x2F;viethoa&#x2F;flickr-photo-manager-android" target= "_blank"><i class="fa fa-globe ico"></i> https:&#x2F;&#x2F;github.com&#x2F;viethoa&#x2F;flickr-photo-manager-android</a>
-              </div>
-            </div>
-          </div>
-          <div class="publication panel panel-default">
-            <div class="panel-heading">
-              <div class="name panel-title">Android MVVM RxJava Demo</div>
-            </div>
-            <div class="panel-body">
-              <div class="year">  </div>
-              <div class="address">
-                <a href="https:&#x2F;&#x2F;github.com&#x2F;viethoa&#x2F;android-mvvm-rxjava-demo" target= "_blank"><i class="fa fa-globe ico"></i> https:&#x2F;&#x2F;github.com&#x2F;viethoa&#x2F;android-mvvm-rxjava-demo</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-xs-12 col-sm-5">
+      </div> <!-- End col-sm-8 -->
+      <!-- Right Section -->
+      <div class="col-xs-12 col-sm-4">
         <!-- CONTACT -->
         <div class="box clearfix">
           <h2><i class="fa fa-bullseye ico"></i> Contact</h2>
@@ -608,11 +502,11 @@
           </div>
           <div class="contact-item">
             <div class="icon pull-left text-center"><span class="fa fa-phone fa-fw"></span></div>
-            <div class="title only pull-right">(+65) 82651756</div>
+            <div class="title only pull-right">(+65) 82651756 (SG)</div>
           </div>
           <div class="contact-item">
             <div class="icon pull-left text-center"><span class="fa fa-phone fa-fw"></span></div>
-            <div class="title only pull-right">(+84) 0786848384</div>
+            <div class="title only pull-right">(+84) 0786848384 (VN)</div>
           </div>
           <div class="contact-item">
             <div class="icon pull-left text-center"><span class="fa fa-envelope fa-fw"></span></div>
@@ -647,61 +541,22 @@
               <div class="year pull-left">2009 2014</div>
               <div class="description pull-right">
                 <h3>University of Science Ho Chi Minh city</h3>
-                <p><i class= "fa fa-graduation-cap ico"></i> Bachelor&#39;s degree</p>
-                <p>Information Technology</p>
+                <p><i class= "fa fa-graduation-cap ico"></i> Bachelor of Computer science</p>
               </div>
             </li>
           </ul>
-        </div>
-        <!-- SKILLS -->
-        <div class="box">
-          <h2><i class="fa fa-tasks ico"></i> Skills</h2>
-          <div class="skills clearfix">
-            <div class="item-skills">
-              Android Developer
-              <span class="skill-level">Expert</span>
-            </div>
-            <div class="col-sm-offset-1 col-sm-12 clearfix">
-              <span class= "skill badge">Object Oriented Programming</span><br/>
-              <span class= "skill badge">Dagger (dependency injection)</span><br/>
-              <span class= "skill badge">MVP, MVVM</span><br/>
-              <span class= "skill badge">DataBinding</span><br/>
-              <span class= "skill badge">RxJava</span><br/>
-              <span class= "skill badge">RxAndroid</span><br/>
-              <span class= "skill badge">Material design</span><br/>
-              <span class= "skill badge">Multiple screens size</span><br/>
-              <span class= "skill badge">Performance</span><br/>
-              <span class= "skill badge">Battery</span><br/>
-              <span class= "skill badge">Service</span><br/>
-              <span class= "skill badge">Unit Test</span><br/>
-            </div>
-          </div>
-          <div class="skills clearfix">
-            <div class="item-skills">
-              Other Skills
-            </div>
-            <div class="col-sm-offset-1 col-sm-12 clearfix">
-              <span class= "skill badge">HTML, HTML5, JavaScript</span><br/>
-              <span class= "skill badge">CSS, CSS3, LESS, SASS, Bootstrap, Foundation</span><br/>
-              <span class= "skill badge">Ember</span><br/>            
-              <span class= "skill badge">Meteor</span><br/>
-              <span class= "skill badge">Node Js</span><br/>
-              <span class= "skill badge">Java</span><br/>
-              <span class= "skill badge">Python</span><br/>
-            </div>
-          </div>
         </div>
         <!-- LANGUAGES -->
         <div class="box">
           <h2><i class="fa fa-language ico"></i> Languages</h2>
           <ul class="list-group">
-            <li class=" list-group-item">Vietnamese</li>
+            <li class=" list-group-item">Vietnamese <span class="skill badge pull-right">major</span></li>
           </ul>
           <ul class="list-group">
             <li class=" list-group-item">English<span class="skill badge pull-right">intermediate</span></li>
           </ul>
         </div>
-      </div>
+      </div> <!-- End col-sm-4 -->
     </div>
   </div>
   <!-- JQUERY -->
