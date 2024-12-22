@@ -7,406 +7,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Khuat-Viet-Hoa</title>
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
-  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
-  <style type="text/css">
-    @import url(//fonts.googleapis.com/css?family=Open+Sans:400,600,700,800);
-    @charset "utf-8";
-    @-webkit-viewport   { width: device-width; }
-    @-moz-viewport      { width: device-width; }
-    @-ms-viewport       { width: device-width; }
-    @-o-viewport        { width: device-width; }
-    @viewport           { width: device-width; }
-
-    body {
-      font-family: 'Open Sans', Arial, Tahoma;
-      font-weight: 400;
-      color: #363636;
-      background: #334960;
-      font-size: 15px;
-    }
-    blockquote {
-      font-size: 1em;
-    }
-
-    .container{
-      /*margin-top: 80px;*/
-      margin-bottom: 15px;
-      background: #fff;
-    }
-
-    .grid-container {
-      display: grid;
-      grid-template-columns: 108px 600px auto;
-/*      grid-template-columns: 0px 600px auto;*/
-      grid-template-areas: 'photo name contact';
-    }
-    .pdf-photo {
-      width: 80px;
-      height: 80px;
-      border-radius: 50%;
-      /*overflow: hidden;
-      display: inline-block;
-      grid-area: photo;*/
-      margin-top: 10px;
-    }
-    .pdf-photo img {
-      width: 80px;
-      height: 80px;
-      border-radius: 50%;
-    }
-    .header-info {
-      margin-top: 10px;
-    }
-    .header-personal {
-      grid-area: name;
-      margin-top: 15px;
-    }
-    .header-info .header-contact {
-      margin-top: 48px;
-      color: #676767;
-      text-align: end;
-      padding-right: 15px;
-      grid-area: contact;
-    }
-    .header-info .header-personal-name {
-      font-size: 34px;
-      font-weight: 700;
-    }
-    .header-info .header-personal-title {
-      color: #334960;
-      opacity: 0.7;
-      font-weight: 700;
-      font-size: 1.5em;
-      margin-top: -5px;
-    }
-
-    #text-header h1{
-      margin: 0;
-      padding: 0;
-      font-size: 1.5em;
-      font-weight: 700;
-      letter-spacing: -1px;
-    }
-    #text-header h1::first-line{
-      font-size: 1.5em;
-      font-weight: 800;
-      line-height: 1.5em;
-    }
-    #text-header h1 span{
-      color: #334960;
-      opacity: 0.7;
-    }
-    #text-header h1 sup{
-      opacity: 0.5;
-    }
-    #text-header:after{
-      width: 100%;
-      height: 3px;
-      border-bottom: 1px solid #ddd;
-      margin-top: 15px;
-      content: '';
-      display: block;
-    }
-
-    .box{
-      padding-bottom: 0px;
-      margin-bottom: 0px;
-    }
-    .box h2{
-      color: #227c74;
-      font-size: 1.5em;
-      font-weight: 700;
-      text-transform: uppercase;
-    }
-    .box h2 .fa{
-      margin-top: 5px;
-    }
-
-    #awards,
-    #education{
-      margin-top: 20px;
-      margin-bottom: 0;
-      position: relative;
-      padding: 1em 0;
-      list-style: none;
-    }
-    #awards:before,
-    #education:before {
-      width: 5px;
-      height: 100%;
-      position: absolute;
-      left: 35px;
-      top: 0;
-      content: ' ';
-      display: block;
-      background: #32475c;
-      background: -moz-linear-gradient(top,  #ffffff 0%, #32475c 7%, #32475c 89%, #ffffff 100%);
-      background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(7%,#32475c), color-stop(89%,#32475c), color-stop(100%,#ffffff));
-      background: -webkit-linear-gradient(top,  #ffffff 0%,#32475c 7%,#32475c 89%,#ffffff 100%);
-      background: -o-linear-gradient(top,  #ffffff 0%,#32475c 7%,#32475c 89%,#ffffff 100%);
-      background: -ms-linear-gradient(top,  #ffffff 0%,#32475c 7%,#32475c 89%,#ffffff 100%);
-      background: linear-gradient(to bottom,  #ffffff 0%,#32475c 7%,#32475c 89%,#ffffff 100%);
-      filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ffffff',GradientType=0 );
-    }
-    #awards li,
-    #education li{
-      width: 100%;
-      z-index: 2;
-      position: relative;
-      float: left;
-    }
-    #awards .year,
-    #education .year{
-      width: 14%;
-      background: #fff;
-      padding: 10px;
-      font-weight: 700;
-      font-size: 14px;
-      display: inline-block;
-    }
-    #awards .description,
-    #education .description{
-      width: 86%;
-      display: inline-block;
-      background: #eee;
-      margin-bottom: 10px;
-      position: relative;
-      padding: 10px;
-      border-bottom: 1px solid #ccc;
-      border-right: 1px solid #ccc;
-    }
-    #awards .description:after,
-    #education .description:after {
-      content: '';
-      position: absolute;
-      top: 15px;
-      right: 0;
-      left: -16px;
-      height: 0;
-      width: 0;
-      border: solid transparent;
-      border-right-color: #eee;
-      border-width: 8px;
-      pointer-events: none;
-    }
-    #awards .description h3,
-    #education .description h3{
-      font-size: 1.2em;
-      margin: 0;
-      padding: 0;
-      font-weight: 700;
-    }
-    #awards .description p,
-    #education .description p{
-      margin-top: 5px;
-      padding: 0;
-    }
-
-    .job{
-      margin-bottom: 0px;
-    }
-    .job .details {
-      margin-left: 3%;
-      width: 95%;
-      padding: 10px;
-      margin-bottom: 10px;
-      background: #eee;
-      border-bottom: 1px solid #ccc;
-      border-right: 1px solid #ccc;
-    }
-    .job .where{
-      font-size: 1.2em;
-      font-weight: bold;
-    }
-    .job .profession{
-      color: #334960;
-      font-size: 1.2em;
-      font-weight: bold;
-    }
-    .job .year{
-      opacity: 0.7;
-      color: #6d6d6d;
-      font-size: 1em;
-    }
-    .job .description{
-      line-height: 1.5em;
-    }
-    .job .highlights{
-      padding: 5px 0;
-      font-weight: bold;
-    }
-    .job .job-details {
-      padding-left: 3%;
-      width: 100%;
-    }
-    .publication {
-      margin-bottom: 0;
-    }
-    .publication .name{
-      font-size: 1em;
-      font-weight: bold;
-    }
-    .publication .year{
-      opacity: 0.7;
-    }
-    .publication p{
-      margin: 0;
-      padding-top: 10px;
-    }
-
-    .contact-item{
-      width: 100%;
-      float: left;
-    }
-    .contact-item .icon{
-      padding: 10px;
-      border-right: 1px solid #ccc;
-      border-bottom: 1px solid #ccc;
-      color: #32475c;
-      background: #eee;
-    }
-    .contact-item:last-child .icon{
-      border-bottom: none;
-    }
-    .contact-item .title{
-      width: 80%;
-      width: calc(100% - 55px);
-      font-weight: 700;
-      opacity: 0.9;
-    }
-    .contact-item .title.only{
-      margin-top: 10px;
-    }
-    .contact-item .description{
-      width: 80%;
-      width: calc(100% - 55px);
-      color: #334960;
-    }
-
-    .item-interests,
-    .item-skills{
-      height: 30px;
-      color: #334960;
-      padding: 5px 10px;
-      margin-bottom: 5px;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      font-size: 1.1em;
-      font-weight: 600;
-    }
-    .interest,
-    .skill{
-      color: #fff;
-      display: inline-block;
-      margin-right: 5px;
-      margin-bottom: 5px;
-      padding: 5px 10px;
-      background: #32475c;
-      position: relative;
-      font-size: .85em;
-    }
-    .skill-level {
-      background-color: #227c74;
-      border-radius: 4px;
-      color: #fff;
-      padding: 1px 8px;
-      font-size: .75em;
-      position: absolute;
-      margin: 1px 10px;
-    }
-    #language-skills .skill{
-      margin: 10px 0;
-      padding-bottom: 10px;
-      border-bottom: 1px solid #eee;
-    }
-    li span.project,
-    li a.project {
-      font-weight: 600;
-    }
-  </style>
-  <style type="text/css" media="print">
-    body {
-      font-size: .95em;
-      -webkit-print-color-adjust: exact;
-    }
-
-    a[href]:after {
-      content: none !important;
-    }
-
-    #photo{
-      display: none;
-    }
-
-    .box {
-      margin-bottom: -10px;
-    }
-    .col-sm-5{
-      width: 40%;
-      padding: 0 15px;
-    }
-
-    .col-sm-7{
-      width: 60%;
-      padding: 0 15px;
-    }
-
-    .skills .col-sm-offset-1,
-    .interests .col-sm-offset-1{
-      margin-top: -10px;
-      margin-bottom: 5px;
-    }
-
-    #education {
-      margin: 0;
-      margin-bottom: -20px;
-    }
-    #awards:before,
-    #education:before {
-      background: none;
-    }
-
-    #awards .description,
-    #education .description,
-    .job .details {
-      border: 1px solid #eee;
-    }
-    .publication,
-    .publication .panel-heading,
-    .publication .name{
-      margin: 0;
-      padding: 0 5px;
-      border: none;
-    }
-    .publication .panel-body {
-      padding: 0 10px;
-      margin: 0;
-    }
-
-    .badge {
-      margin: 0;
-    }
-
-    .list-group-item{
-      border: none;
-      margin: 0;
-      padding: 5px 15px;
-    }
-    .list-group-item:after{
-      content: '';
-      position: absolute;
-      top: 8px;
-      right: 0;
-      left: -1px;
-      height: 0;
-      width: 0;
-      border: solid transparent;
-      border-right-color: #999;
-      border-width: 4px;
-      pointer-events: none;
-    }
-  </style>
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet"> 
+  <link rel="stylesheet" type="text/css" href="./css/pdf-version.css">
 </head>
 <body>
   <div class="container">
@@ -419,11 +21,12 @@
         <div class="header-personal">
           <div class="header-personal-name">Khuat Viet Hoa<br></div>
           <div class="header-personal-title">Senior Lead Android - Zalo</div>
+          <div class="header-personal-email">hoa.khuatviet@gmail.com - (+84) 786848384 (Mobile/WS)</div>
         </div>
-        <div class="header-contact">
+        <!-- <div class="header-contact">
           <span>hoa.khuatviet@gmail.com </br></span>
           <span>(+84) 786848384</span>
-        </div>
+        </div> -->
       </div>
     </div>
     <!-- Divider -->
@@ -440,10 +43,10 @@
         <div class="box">
           <h2><i class="fa fa-user ico"></i> Skills</h2>
           <div class="row">
-            <div class="job-details col-xs-11">
+            <div class="job-details col-xs-12">
               <div class="description">
                 <ul>
-                  <li>3 years+ experiences as an Engineer Manager, have lead team of 13 people included Android, IOS, BE, Web, and QA.</li>
+                  <li>4 years experiences as an Engineer Manager, have lead team of 14 people included Android, iOS, BE, Web, and QA.</li>
                   <li>10 years experiences in Android with both Java (4years) & Kotlin (6years), proficient in Kotlin, Coroutines, Flow, RxKotlin, Java, RxJava, Jetpack Compose, Dagger Dependency Injection and Hilt, Gradle, Android SDK, Android Development, Unit Test, Junit, Mockito, Mockk, Automation Test, Espresso, MockWebServer.</li>
                   <li>Proficient in MVP, MVVM, and Clean Architecture, also build a <a class="project" href="https://github.com/viethoa/clean-architecture">custom of Clean Architecture</a> which targeting for code scalable, maintainable, reusable, and testable.</li>
                   <li>Have been working on the big application such as <a class="project" href="https://play.google.com/store/apps/details?id=com.zing.zalo&hl=vi">Zalo Messaging App</a>, <a class="project" href="https://play.google.com/store/apps/details?id=com.grabtaxi.passenger&hl=en_SG&gl=US">Grab Supper App</a>, <a class="project" href="https://play.google.com/store/apps/details?id=com.grabtaxi.driver2&hl=en_SG&gl=US">Grab Driver App</a>, <a class="project" href="https://play.google.com/store/apps/details?id=com.seatech.bluebird&hl=en_SG&gl=US">MyBluebird (Taxi Hailing Application)</a>.</li>
@@ -469,8 +72,8 @@
                     <li>Lead Android Social Media Team of 7 people which included Senior Leader and Leader.</li>
                     <li>Responsible for team's technical and architecture for both Social Core and Featuring. Investigating in Kotlin Multiple Platform for future mobile development.</li>
                     <li>Mainly focus on building a high-performance team that delivers exceptional user experiences while scaling our platform to meet the demands of millions of users.</li>
-                    <li>Build the team roadmap, quarterly planning and make sure it delivered on time.</li>
-                    <li>Provide the career plan for each team member, follow up and support them to make sure they are on track.</li>
+                    <li>Also making architecture solution for Social codebase from modularization to the future migrate from monorepo to microrepo.</li>
+                    <li>Manage team, build team roadmap, and making career plan to grow team members.</li>
                   </ul>
                 </div>
               </div>
@@ -521,7 +124,7 @@
                 <div class="profession year">Feb 2021 – May 2022 (1 yr 3 mos)</div>
                 <div class="description">
                   <ul>
-                    <li>Lead Grab Mart Team of 6 people which include both Android and IOS, in-charge for all Grab Mart features, code architecture, code quality, and code coverage.</li>
+                    <li>Lead Grab Mart Team of 6 people which include both Android and iOS, in-charge for all Grab Mart features, code architecture, code quality, and code coverage.</li>
                     <li>Built <span class="project">Takeaway</span> & <span class="project">Dine-in</span> services for GrabFood, which help to increase about 20% of Deliveries revenue in Singapore and about 10% in total.</li>
                     <li>Delivered <span class="project">Favorite Item</span> project, provided users a way to save their favorite items for next time buying.</li>
                     <li>Working closely with the PM to build up the product, accountable for project quality, timeline and team performance.</li>
